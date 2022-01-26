@@ -897,7 +897,7 @@ f_{i,j}=\sum_{k=0}^{k<10} f_{i-1,j-[k==d]}</script><p>这个题我们在做的�
 <h4 id="建反边"><a href="#建反边" class="headerlink" title="建反边"></a>建反边</h4><p>我们先看一个题：对于一个有向图，从节点1出发，共n个点，每到一个节点立即返回，问最短的总路径是多少<br>易知我们从节点1到每个点可以用dijkstra跑一遍，那么怎么跑回来呢？每次循环再走一遍？那复杂度不堪设想<br>所以我们想到可以把边反过来建，这样我们算各个点到节点1的距离可以反过来，重新在建反边的前提下跑一遍dijkstra(1)，这就是建反边的思想</p>
 ]]></content>
       <categories>
-        <category>学习笔记</category>
+        <category>习题题解</category>
       </categories>
       <tags>
         <tag>入门</tag>
@@ -1688,6 +1688,115 @@ f(1)=\sum _{d=1}^n \mu (d)\sum_{i=1}^{\frac n d} \lfloor \dfrac n {di}\rfloor \s
       <tags>
         <tag>入门</tag>
         <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最短路最最最基础</title>
+    <url>/Floyd_Dijkstra/</url>
+    <content><![CDATA[<h2 id="categories-学习笔记"><a href="#categories-学习笔记" class="headerlink" title="categories: 学习笔记"></a>categories: 学习笔记</h2><h1 id="图论基础"><a href="#图论基础" class="headerlink" title="图论基础"></a>图论基础</h1><h2 id="最短路"><a href="#最短路" class="headerlink" title="最短路"></a>最短路</h2><p><img src="C:\Users\asus\AppData\Roaming\Typora\typora-user-images\image-20210715160552989.png" alt="image-20210715160552989"></p>
+<p><strong>性质</strong></p>
+<p>对于边权为正的图，任意两个结点之间的最短路，不会经过重复的结点。</p>
+<p>对于边权为正的图，任意两个结点之间的最短路，不会经过重复的边。</p>
+<p>对于边权为正的图，任意两个结点之间的最短路，任意一条的结点数不会超过n，边数不会超过n-1。</p>
+<p><strong>Floyd 算法</strong></p>
+<p>是用来求任意两个结点之间的最短路的。</p>
+<p>复杂度比较高，但是常数小，容易实现。（只有三个 <code>for</code>）</p>
+<p>适用于任何图，不管有向无向，边权正负，但是最短路必须存在。（不能有个负环）</p>
+<p><strong>实现</strong>:<img src="C:\Users\asus\AppData\Roaming\Typora\typora-user-images\image-20210715173428802.png" alt="image-20210715173428802"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (k = <span class="number">1</span>; k &lt;= n; k++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">        f[k][i][j] = <span class="built_in">min</span>(f[k - <span class="number">1</span>][i][j], f[k - <span class="number">1</span>][i][k] + f[k - <span class="number">1</span>][k][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因为第一维对结果无影响，我们可以发现数组的第一维是可以省略的，于是可以直接改成 <code>f[x][y] = min(f[x][y], f[x][k]+f[k][y])</code>。</p>
+<p>证明<strong>第一维对结果无影响</strong></p>
+<p>我们注意到如果放在一个给定第一维 <code>k</code> 二维数组中，<code>f[i][k]</code> 与 <code>f[k][j]</code> 在某一行和某一列。而 <code>f[i][j]</code> 则是该行和该列的交叉点上的元素。</p>
+<p>现在我们需要证明将 <code>f[k][i][j]</code> 直接在原地更改也不会更改它的结果：我们注意到 <code>f[k][i][j]</code> 的涵义是第一维为 <code>k-1</code> 这一行和这一列的所有元素的最小值，包含了 <code>f[k-1][i][j]</code>，那么我在原地进行更改也不会改变最小值的值，因为如果将该三维矩阵压缩为二维，则所求结果 <code>f[i][j]</code> 一开始即为原 <code>f[k-1][i][j]</code> 的值，最后依然会成为该行和该列的最小值。</p>
+<p>故可以压缩，压缩后代码如下</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (k = <span class="number">1</span>; k &lt;= n; k++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">1</span>; j &lt;= n; j++) &#123;</span><br><span class="line">            f[i][j] = <span class="built_in">min</span>(f[i][j], f[i][k] + f[k][j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>综上时间复杂度是$O(N^3)$ ，空间复杂度是$O(N^2)$ 。</p>
+<p>应用</p>
+<p><img src="C:\Users\asus\AppData\Roaming\Typora\typora-user-images\image-20210715201209071.png" alt="image-20210715201209071"></p>
+<h3 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h3><p>Dijkstra 是个人名（荷兰姓氏）。</p>
+<p>IPA:/ˈdikstrɑ/或/ˈdɛikstrɑ/。</p>
+<p>这种算法只适用于非负权图，但是时间复杂度非常优秀。</p>
+<p>也是用来求单源最短路径的算法。</p>
+<p>实现</p>
+<p>主要思想是，将结点分成两个集合：已确定最短路长度的，未确定的。</p>
+<p>一开始第一个集合里只有S。</p>
+<p>然后重复这些操作：</p>
+<ol>
+<li>对那些刚刚被加入第一个集合的结点的所有出边执行松弛操作。</li>
+<li>从第二个集合中，选取一个最短路长度最小的结点，移到第一个集合中。</li>
+</ol>
+<p>直到第二个集合为空，算法结束。</p>
+<p>时间复杂度：只用分析集合操作， n次 <code>delete-min</code>， n次 <code>decrease-key</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">vector&lt;vector&lt;LL&gt;&gt; Ps;  <span class="comment">// 图的邻接矩阵</span></span><br><span class="line">vector&lt;LL&gt; dist;        <span class="comment">// min_len 的运行结果存储位置</span></span><br><span class="line"><span class="comment">// i: 源点在点集中的下标</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">min_len</span><span class="params">(<span class="keyword">size_t</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">using</span> Pair = pair&lt;LL, <span class="keyword">size_t</span>&gt;;  <span class="comment">// pair 的排序是先第一分量后第二分量，</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;k : dist) k = LLONG_MAX;<span class="comment">// 通过这个可以调整它在堆中的位置</span></span><br><span class="line">    dist[i] = <span class="number">0</span>;<span class="comment">// 初始化 dist</span></span><br><span class="line">    priority_queue&lt;Pair, vector&lt;Pair&gt;, greater&lt;Pair&gt;&gt; Q;<span class="comment">// 初始化小根堆  </span></span><br><span class="line">    Q.<span class="built_in">push</span>(<span class="built_in">Pair</span>(<span class="number">0</span>, i));<span class="comment">// 小根堆</span></span><br><span class="line">    <span class="keyword">while</span> (!Q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="keyword">auto</span> k = Q.<span class="built_in">top</span>().second;</span><br><span class="line">        Q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; Ps[k].<span class="built_in">size</span>(); i++) &#123; <span class="comment">// 如果 k 和 i 有边连（这里设置 Ps[k][i] == 0 时无边连接）</span></span><br><span class="line">            <span class="keyword">if</span> (Ps[k][i] &amp;&amp; dist[k] + Ps[k][i] &lt; dist[i]) &#123;</span><br><span class="line">                <span class="comment">// 松弛操作</span></span><br><span class="line">                dist[i] = dist[k] + Ps[k][i];</span><br><span class="line">                Q.<span class="built_in">push</span>(<span class="built_in">Pair</span>(dist[i], i));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>入门</tag>
+        <tag>图论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>背包问题</title>
+    <url>/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="背包问题的一些拓展与处理"><a href="#背包问题的一些拓展与处理" class="headerlink" title="背包问题的一些拓展与处理"></a>背包问题的一些拓展与处理</h1><h2 id="装箱问题"><a href="#装箱问题" class="headerlink" title="装箱问题"></a><a href="https://www.acwing.com/problem/content/1026/">装箱问题</a></h2><h4 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h4><p>有一个箱子容量为 V，同时有 n 个物品，每个物品有一个体积（正整数）。要求 n 个物品中，任取若干个装入箱内，使箱子的剩余空间为最小。</p>
+<h4 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h4><p>$f[i]$记录当体积为m时，最多能放多少</p>
+<p>转移方程：$f_j=max(f_j,f_{j-u}+u)$</p>
+<p><strong>特殊性:</strong>此处的价值和容量是同一个东西</p>
+<h2 id="宠物小精灵之收服"><a href="#宠物小精灵之收服" class="headerlink" title="宠物小精灵之收服"></a><a href="https://www.acwing.com/problem/content/1024/">宠物小精灵之收服</a></h2><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>有一个背包，第一个容量是M,第二个容量是V，共有N个物品，问最多能装几个，此时第二个容量最多能剩多少</p>
+<p>$0&lt;N≤1000$<br>$0&lt;M≤500$<br>$0&lt;V≤100$</p>
+<h4 id="核心思想："><a href="#核心思想：" class="headerlink" title="核心思想："></a>核心思想：</h4><p>这题本来是一个朴素的二维费用背包问题，但是这题有两个值得深究的点：</p>
+<h5 id="1-怎么去找最多能装几个，最多能剩多少"><a href="#1-怎么去找最多能装几个，最多能剩多少" class="headerlink" title="1.怎么去找最多能装几个，最多能剩多少"></a>1.怎么去找最多能装几个，最多能剩多少</h5><p>我们设$f_{i,j}$表示$m$为$i$，$v$为$j$时所收集到的最大精灵。</p>
+<p>然后我们就可以列出一个平凡的三重循环的DP</p>
+<p>但是还没有完，我们要求的最多能装几个好说，怎么求能剩多少呢</p>
+<p>这也好办，如果此时的$f_{i,j}$比$ans$数组要大，那么$tag$直接标记成$j$</p>
+<p>但是如果两者相等，就取两者较小的</p>
+<p>最后直接输出即可</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> f[N][N],u[N],v[N];</span><br><span class="line"><span class="keyword">int</span> n,m,q,tagans,tag;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;n,&amp;m,&amp;q);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=q;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u[i],&amp;v[i]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=q;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=n;j&gt;=u[i];j--)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=m;k&gt;=v[i];k--)</span><br><span class="line">                f[j][k]=<span class="built_in">max</span>(f[j][k],f[j-u[i]][k-v[i]]+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=n;j++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;m;k++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(f[j][k]&gt;tagans) tagans=f[j][k],tag=k;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(f[j][k]==tagans &amp;&amp; tag&gt;k) tag=k;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,tagans,m-tag);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-我们观察数据发现什么"><a href="#2-我们观察数据发现什么" class="headerlink" title="2.我们观察数据发现什么"></a>2.我们观察数据发现什么</h4><p>第一种写法的时间复杂度我们容易发现是$O(nmV)$</p>
+<p>我们首先可以理解一个问题就是对于一个背包来说，$f_{i,j}$表示枚举第$i$样物品的体积是$j$时的最大价值</p>
+<p>那么此时的$v[i]$和$w[i]$是可以互换的，只是会更改$f$数组的意义</p>
+<p>那我们回来看这个题，由于$V$很小，我们考虑多次使用$V$</p>
+<p>所以我们的新的$f$数组表示v为$i$, 枚举到第$j$个物品用了最小的$m$</p>
+<p>所以我们此时就可以换一种写法</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">int</span> f[N][N];</span><br><span class="line"><span class="keyword">int</span> n,m,q;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(f,<span class="number">0x3f</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(f));</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;n,&amp;m,&amp;q);</span><br><span class="line">    f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,u,v;i&lt;=q;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u,&amp;v);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=v;j--)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=i;k;k--)</span><br><span class="line">                <span class="keyword">if</span>(f[j-v][k<span class="number">-1</span>]+u&lt;=n) f[j][k]=<span class="built_in">min</span>(f[j][k],f[j-v][k<span class="number">-1</span>]+u); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k=q;~k;k--)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;j++)</span><br><span class="line">            <span class="keyword">if</span>(f[j][k]!=inf) <span class="keyword">return</span> <span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>,k,m-j),<span class="number">0</span>; </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时候我们分析复杂度就是$O(V^2m)$算出来大概是5e6,前面那个算出来是5e7，区别还是很大的</p>
+<h2 id="数字组合"><a href="#数字组合" class="headerlink" title="数字组合"></a><a href="https://www.acwing.com/problem/content/280/">数字组合</a></h2><h4 id="题目描述：-1"><a href="#题目描述：-1" class="headerlink" title="题目描述："></a>题目描述：</h4><p>给定$n$个正整数$A1,A2,…,An$，从中选出若干个数，使它们的和为$m$，求有多少种选择方案。</p>
+<p>$1≤n≤100$<br>$1≤m≤10000$<br>$1≤Ai≤1000$</p>
+<h4 id="核心思想：-1"><a href="#核心思想：-1" class="headerlink" title="核心思想："></a>核心思想：</h4><p>这个题是要求方案数，是一类很经典的DP了</p>
+<p>首先，我们要设$f_{j}$表示和为$j$的方案数</p>
+<p>那么对于$j$来说，假如说存在$i∈[1,n]$且$a[i]+k=j$那么我们的$f[j]=f[j]+f[k]$就是说$f_k$的所有方案数都可以通过加上一个数凑成$j$，所以我们可以得出$f_j+=f_j-a[i]$</p>
+<p>因为每个数只能选一次，所以我们直接用01背包操作即可</p>
+<p><strong>注意：</strong>f[0]要赋成1</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> f[N],a[N];</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">read</span>(n),<span class="built_in">read</span>(m);</span><br><span class="line">    f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) <span class="built_in">read</span>(a[i]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=a[i];j--)&#123;</span><br><span class="line">            f[j]=f[j]+f[j-a[i]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;f[m];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="货币系统"><a href="#货币系统" class="headerlink" title="货币系统"></a><a href="https://www.acwing.com/problem/content/1023/">货币系统</a></h4><h4 id="题目描述：-2"><a href="#题目描述：-2" class="headerlink" title="题目描述："></a>题目描述：</h4><p>给你一个n种面值的货币系统，求组成面值为m的货币有多少种方案。</p>
+<h4 id="核心思想：-2"><a href="#核心思想：-2" class="headerlink" title="核心思想："></a>核心思想：</h4><p>这个题和上一个题差不多，但是我们发现我们的当前的加钱可以有若干张统一价钱的拼接起来，直接完全背包就行了啊</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">int</span> f[N];</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u; cin&gt;&gt;u;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=u;j&lt;=m;j++) f[j]+=f[j-u];</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;f[m];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="混合背包问题"><a href="#混合背包问题" class="headerlink" title="混合背包问题"></a><a href="https://www.acwing.com/problem/content/7/">混合背包问题</a></h2><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>有$N$种物品和一个容量是 $V$ 的背包。</p>
+<p>物品一共有三类：</p>
+<ul>
+<li>第一类物品只能用1次（01背包）；</li>
+<li>第二类物品可以用无限次（完全背包）；</li>
+<li>第三类物品最多只能用 $si$ 次（多重背包）；</li>
+</ul>
+<p>每种体积是$vi$,价值是$wi$。</p>
+<p>求解将哪些物品装入背包，可使物品体积总和不超过背包容量，且价值总和最大。 </p>
+<h4 id="核心思想：-3"><a href="#核心思想：-3" class="headerlink" title="核心思想："></a>核心思想：</h4><p>我们考虑一个问题我们在二进制优化时我们是把每个物品拆分，那么此时我们可以直接套用二进制拆分的思想，01背包就转化成$s=1$的多重背包，完全背包转化为$s=m/u$的多重背包</p>
+<p>最后用多重背包思路求解即可QAQ</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> n,m,v[<span class="number">100010</span>],w[<span class="number">100010</span>],f[<span class="number">100010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">int</span> cnt=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> a,b,s;</span><br><span class="line">        cin&gt;&gt;a&gt;&gt;b&gt;&gt;s;</span><br><span class="line">        <span class="keyword">int</span> k=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(s&lt;<span class="number">0</span>)s=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(s==<span class="number">0</span>)s=m/a;</span><br><span class="line"><span class="comment">//把01背包和多重背包先转化成多重背包，若为完全背包，则在最优情况下，只能取总体积/该物品体积向下取整 </span></span><br><span class="line">        <span class="keyword">while</span>(k&lt;=s)&#123;</span><br><span class="line">            v[cnt]=a*k;</span><br><span class="line">            w[cnt]=b*k;</span><br><span class="line">            s-=k;</span><br><span class="line">            k*=<span class="number">2</span>;</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            v[cnt]=s*a;</span><br><span class="line">            w[cnt]=s*b;</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="comment">//将多重背包进行二进制优化，变成01背包 </span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=cnt;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=v[i];j--)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-v[i]]+w[i]); <span class="comment">//01背包问题</span></span><br><span class="line">    cout&lt;&lt;f[m]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="背包问题方案数"><a href="#背包问题方案数" class="headerlink" title="背包问题方案数"></a><a href="https://www.acwing.com/problem/content/11/">背包问题方案数</a></h2><h4 id="题目描述：-3"><a href="#题目描述：-3" class="headerlink" title="题目描述："></a>题目描述：</h4><p>有$N$件物品和一个容量是$V$的背包。每件物品只能使用一次。</p>
+<p>第$i$件物品的体积是$vi$，价值是$wi$。</p>
+<p>求解将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。</p>
+<p>输出<strong>最优选法的方案数</strong>。注意答案可能很大，请输出答案模1e9+7的结果。</p>
+<h4 id="核心思想-1"><a href="#核心思想-1" class="headerlink" title="核心思想"></a>核心思想</h4><p>每次更新答案时判断一下，记录一个$cnt$数组，初始为1，表示背包容积为$i$时总价值为最佳的方案数，那么当$f$被更新时，$cnt_j$就会被更新成$cnt_{j-u}$，那么$cnt_j$加上$cnt_{j-u}$即可</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">int</span> f[N];</span><br><span class="line"><span class="keyword">int</span> a[N],u[N],v[N];</span><br><span class="line"><span class="keyword">int</span> cnt[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=m;i++) cnt[i]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;u[i],&amp;v[i]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=u[i];j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(f[j]&lt;f[j-u[i]]+v[i])&#123;</span><br><span class="line">                f[j]=f[j-u[i]]+v[i];</span><br><span class="line">                cnt[j]=cnt[j-u[i]];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(f[j]==f[j-u[i]]+v[i]) cnt[j]=(cnt[j]+cnt[j-u[i]])%mod;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;cnt[m];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>习题题解</category>
+      </categories>
+      <tags>
+        <tag>入门</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
 </search>
