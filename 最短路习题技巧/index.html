@@ -72,7 +72,7 @@
 <h4 id="建反边"><a href="#建反边" class="headerlink" title="建反边"></a>建反边</h4><p>我们先看一个题：对于一个有向图，从节点1出发，共n个点，每到一个节点立即返回，问最短的总路径是多少<br>易知我们从节点1到每个点可以用dijkstra跑一遍，那么怎么跑回来呢？每次循环再走一遍？那复杂度不堪设想<br>所以我们想到可以把边反过来建，这样我们算各个点到节点1的距离可以反过来，重新在建反边的前提下跑一遍dijkstra(1)，这就是建反边的思想</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="true">
                 <source type="audio/mpeg" src="">
             </audio>
             
