@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>线段树 - Light up the sky</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="线段树一种我琢磨了很长时间才明白的数据结构核心思想就是把一个序列，分成一个二叉树，叶子节点存的是每个元素，能够快速修改或访问区间中的数值，功能♂强大线段树主要分为下面几步：
+push_up操作123,"> 
+    <meta name="author" content="RevolutionBP"> 
+    <link rel="alternative" href="atom.xml" title="Light up the sky" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="线段树 - Light up the sky"/>
+    <meta name="twitter:description" content="线段树一种我琢磨了很长时间才明白的数据结构核心思想就是把一个序列，分成一个二叉树，叶子节点存的是每个元素，能够快速修改或访问区间中的数值，功能♂强大线段树主要分为下面几步：
+push_up操作123,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Light up the sky"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="线段树 - Light up the sky"/>
+    <meta property="og:description" content="线段树一种我琢磨了很长时间才明白的数据结构核心思想就是把一个序列，分成一个二叉树，叶子节点存的是每个元素，能够快速修改或访问区间中的数值，功能♂强大线段树主要分为下面几步：
+push_up操作123,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Light up the sky</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">线段树</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">线段树</h1>
+        <div class="stuff">
+            <span>十月 01, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h3 id="线段树"><a href="#线段树" class="headerlink" title="线段树"></a>线段树</h3><p><del>一种我琢磨了很长时间才明白的数据结构</del><br>核心思想就是把一个序列，分成一个二叉树，叶子节点存的是每个元素，能够快速修改或访问区间中的数值，<del>功能♂强大</del><br>线段树主要分为下面几步：</p>
+<h4 id="push-up操作"><a href="#push-up操作" class="headerlink" title="push_up操作"></a>push_up操作</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_up</span><span class="params">(<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    tree[p]=tree[<span class="built_in">lc</span>(p)]+tree[<span class="built_in">rc</span>(p)];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个很简单</p>
+<h4 id="build操作"><a href="#build操作" class="headerlink" title="build操作"></a>build操作</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">        tree[p]=a[l];</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">build</span>(l,mid,<span class="built_in">lc</span>(p));</span><br><span class="line">    <span class="built_in">build</span>(mid+<span class="number">1</span>,r,<span class="built_in">rc</span>(p));</span><br><span class="line">    <span class="built_in">push_up</span>(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实就是一个递归<br>先建左子树，再建右子树，最后合并起来更新根节点</p>
+<p>但是这里我们要注意哈，如果你是像我一样以这种形式<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[N],n,m,tree[N&lt;&lt;<span class="number">2</span>],tag[N&lt;&lt;<span class="number">2</span>];</span><br><span class="line"><span class="keyword">int</span> x,y,k;</span><br></pre></td></tr></table></figure><br>存树的话,那么build操作就没别的事了<br>还有的大佬是把每个节点的.l=cnt 这种形式的，那么还得进行其他操作，具体看别的大佬的博客，当然，我的这种方式是空间最小的</p>
+<p>下面一步就是核心了（</p>
+<h4 id="pushdown操作"><a href="#pushdown操作" class="headerlink" title="pushdown操作"></a>pushdown操作</h4><p>我们把一个tag数组，或者叫它lazy数组，来省事，这么想，如果多次修改了同一个点的大小，我们每次子啊那么大的一个树里，改那么多数看起来是不是很亏，那么不妨在查询之前，我们先把这些要加的数存起来，等到一定时刻需要查询时再加</p>
+<p>但是这样有个问题，这些数我们存到哪呢？<br>伟大的OIer先辈们早已给我们整理好了</p>
+<p>如果节点p加上了k<br>那么先让tree[p]+=k;然后让tag[p]也加上k，</p>
+<p>等到需要的时候，我们把这个p传下去，然后让下面的节点的tag[lc(p)]+=k,<br>这是我们看小标题，这个操作叫做pushdown（push：推，down：下面）（推下去）<br>那么我们就可以考虑，推下去以后 子树 tree会变，tag会变，我们分别改一下，tag刚才其实已经改过了，只需要该tree就行了，tree更好改了，tag[p]存的是欠下面的数，然后子树的tree就要加上tag[p]* （子树的长度）<br>此时这个根节点已经做到应该做的了,所以tag[p]=0;<br>最后放上代码<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(tag[p])&#123;</span><br><span class="line">        tag[<span class="built_in">lc</span>(p)]+=tag[p];</span><br><span class="line">        tag[<span class="built_in">rc</span>(p)]+=tag[p];</span><br><span class="line">        tree[<span class="built_in">lc</span>(p)]+=tag[p]*(mid-l+<span class="number">1</span>);</span><br><span class="line">        tree[<span class="built_in">rc</span>(p)]+=tag[p]*(r-mid);</span><br><span class="line">        tag[p]=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>update和query 区间修改和区间查询就直接背就行了<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> k,<span class="keyword">int</span> m,<span class="keyword">int</span> n,<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="comment">//把l到r这段区间全部加k，总区间为m,n</span></span><br><span class="line">    <span class="keyword">if</span>(l&lt;=m&amp;&amp;n&lt;=r)&#123;</span><br><span class="line">        tree[p]+=(n-m+<span class="number">1</span>)*k;</span><br><span class="line">        tag[p]+=k;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(m+n)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">pushdown</span>(m,n,p);</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=mid) <span class="built_in">update</span>(l,r,k,m,mid,<span class="built_in">lc</span>(p));</span><br><span class="line">    <span class="keyword">if</span>(r&gt;mid) <span class="built_in">update</span>(l,r,k,mid+<span class="number">1</span>,n,<span class="built_in">rc</span>(p));</span><br><span class="line">    <span class="built_in">push_up</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> m,<span class="keyword">int</span> n,<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=m&amp;&amp;n&lt;=r) <span class="keyword">return</span> tree[p];</span><br><span class="line">    <span class="keyword">int</span> mid=(m+n)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">pushdown</span>(m,n,p);</span><br><span class="line">    <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=mid) sum+=<span class="built_in">query</span>(l,r,m,mid,<span class="built_in">lc</span>(p));</span><br><span class="line">    <span class="keyword">if</span>(r&gt;mid) sum+=<span class="built_in">query</span>(l,r,mid+<span class="number">1</span>,n,<span class="built_in">rc</span>(p));</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>完结撒花</strong></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

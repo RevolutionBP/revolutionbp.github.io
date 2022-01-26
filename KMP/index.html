@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KMP - Light up the sky</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="KMP算法前提介绍KMP算法是一种看模式串在主串中出现次数的优化算法 复杂度为O（n+m）
+这个算法理解了不难，不理解只背模板早晚会挂，而且容易忘，建议从头到尾一步一步看完
+为了方便描述，我们把S作,"> 
+    <meta name="author" content="RevolutionBP"> 
+    <link rel="alternative" href="atom.xml" title="Light up the sky" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="KMP - Light up the sky"/>
+    <meta name="twitter:description" content="KMP算法前提介绍KMP算法是一种看模式串在主串中出现次数的优化算法 复杂度为O（n+m）
+这个算法理解了不难，不理解只背模板早晚会挂，而且容易忘，建议从头到尾一步一步看完
+为了方便描述，我们把S作,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Light up the sky"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="KMP - Light up the sky"/>
+    <meta property="og:description" content="KMP算法前提介绍KMP算法是一种看模式串在主串中出现次数的优化算法 复杂度为O（n+m）
+这个算法理解了不难，不理解只背模板早晚会挂，而且容易忘，建议从头到尾一步一步看完
+为了方便描述，我们把S作,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Light up the sky</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">KMP</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">KMP</h1>
+        <div class="stuff">
+            <span>十二月 01, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h1><h2 id="前提介绍"><a href="#前提介绍" class="headerlink" title="前提介绍"></a>前提介绍</h2><p>KMP算法是一种看模式串在主串中出现次数的优化算法 复杂度为O（n+m）</p>
+<p>这个算法理解了不难，不理解只背模板早晚会挂，而且容易忘，建议从头到尾一步一步看完</p>
+<p>为了方便描述，我们把S作为子串，T作为模式串,然后下标一定要从1开</p>
+<p>设len1为长串，len2为模式串（即短串）</p>
+<p>本讲解是参考李煜东蓝书的，把部分不易懂的写了出来，希望对大家有帮助</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3375">洛谷P3375【模板】KMP字符串匹配</a></p>
+<h2 id="next数组求解"><a href="#next数组求解" class="headerlink" title="next数组求解"></a>next数组求解</h2><p>短串:    A  B  A  B  A  A</p>
+<p>下标:    1  2   3  4  5  6</p>
+<p>数组:    0  0   1  2  3  1</p>
+<p>数组指nxt数组</p>
+<p>nxt[2]代表s[1]~s[2]即”AB”，前缀为”A”，后缀为“B”，共有元素的长度为0.</p>
+<p>nxt[3]代表s[1]~s[3]即”ABA”，前缀为”AB”，后缀为”BA”，最大前后缀即”A”,长度为1.</p>
+<p>nxt[4]代表s[1]-s[4]即”ABAB”，前缀为”ABA”后缀为“BAB”，最大前后缀即”AB”,长度为2.</p>
+<p>nxt[5]代表s[1]~s[5]即”ABABA”,前缀为”ABAB”，后缀为”BABA”,最大前后缀即”ABA”,长度为3.</p>
+<p>nxt[i] 表示从第1位到第i位 除去前后都是自身的最大前后缀（所以上面的例子不能有nxt[6]）</p>
+<p>我们先好好理解一下nxt数组的意思，然后大声喊十遍：<code>nxt是最大前后缀，nxt是最大前后缀，nxt是最大前后缀，nxt是最大前后缀，nxt是最大前后缀，nxt是最大前后缀，nxt是最大前后缀，nxt是最大前后缀，nxt是最大前后缀，nxt是最大前后缀，</code></p>
+<p>相信大家都已经喊完了，或者跳过了，然后我们看如何求解nxt数组：</p>
+<h3 id="朴素做法"><a href="#朴素做法" class="headerlink" title="朴素做法"></a>朴素做法</h3><p>对于 $A[1 - i]$依次枚举  $j∈[1,i-1]$, 并检查  $A[i-j+1,i]$ 和  $A[1,j]$,复杂度$O((len2)^3)$</p>
+<p>然后我尝试着写了份代码(最好还是看一看挺好懂的)：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len2;i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>;j;j--)&#123;</span><br><span class="line">        <span class="keyword">int</span> flag=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> k=i-j;<span class="comment">//k是用来检验后串</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> n=<span class="number">1</span>;n&lt;=j;n++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(t[n]!=t[k+n])&#123;</span><br><span class="line">                flag=<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!flag)&#123;</span><br><span class="line">            nxt[i]=<span class="built_in">max</span>(nxt[i],j);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="KMP优化"><a href="#KMP优化" class="headerlink" title="KMP优化"></a>KMP优化</h3><p>在讲KMP思想之前</p>
+<p>我们先证明几个有关KMP的引理</p>
+<h4 id="引理"><a href="#引理" class="headerlink" title="引理"></a>引理</h4><p>我们先引入一个概念：候选项</p>
+<p>如果存在一个j使得$A[1,j]$和$A[i-j+1,i]$相等，那么我们就能认为$j$是$nxt[i]$的一个候选项，很显然，$1 \le j \le nxt[i]$</p>
+<p>现在我们需要证明：若$j_0$是$nxt[i]$的一个候选项，则小于$j_0$的最大的$nxt[i]$的候选项是$nxt[j_0]$。换言之，$[nxt[j_0]+1,j_0-1]$之间一定不含$nxt[i]$的候选项</p>
+<p>这个玩意很重要，看出来这个你的kmp就学完了</p>
+<p>这个要用反证法：</p>
+<p>假设在$[nxt[j_0]+1,j_0-1]$之间存在一个$j_1$可以当作候选项</p>
+<p>我们可以发现，若$j_1$是候选项我们可以列出下面两个式子</p>
+<p>$A[1,j_1]$ = $A[i-j_1+1,i]$</p>
+<p>$A[1,j_0]$ = $A[i-j_0+1,i]$</p>
+<p>然后由于是前后缀，所以说第二个式子的每边的后k个也是相等的</p>
+<p>$A[j_0-k+1,j_0]$ = $A[i-k+1,i]$</p>
+<p>我们钦定$k=j_1$</p>
+<p>所以说</p>
+<p>$A[j_0-j_1+1,j_0]$ = $A[i-j_1+1,i]$</p>
+<p>发现和第一个式子有重合，直接把第二个式子换成</p>
+<p>$A[1,j_1]$ = $A[j_0-j_1+1,j_0]$</p>
+<p>与$nxt[j_0]$的<strong>最大</strong>的性质不符，故假设不成立，即引理正确</p>
+<p>如果看不懂，不用看上面的一堆式子直接看图就明白了！</p>
+<p>设最浅的块是a，其次是b，最深的是c</p>
+<p>则：$c$为$nxt[j_0]$</p>
+<p>$b+c$ 为 $j_1$</p>
+<p>$a+b+c$ 是 $j_0$<br><img src="https://img2020.cnblogs.com/blog/1823105/202110/1823105-20211026222145698-442157332.png" alt="image"></p>
+<h4 id="KMP的操作及实现"><a href="#KMP的操作及实现" class="headerlink" title="KMP的操作及实现"></a>KMP的操作及实现</h4><p>由刚才我们发现的这一性质，我们可以发现KMP的若干性质</p>
+<p>1.我们可以发现当$nxt[i-1]$确认时，我们就可以知道$nxt[i]$的所有border从大到小是$nxt[nxt[i]]$，$nxt[nxt[nxt[i]]]$……</p>
+<p>2.我们还可以发现若$j$是$nxt[i]$的border，那么$j-1$也是$nxt[i-1]$的border</p>
+<h5 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h5><p>这个证明很显然，$j$如果说是$nxt[i]$的border，则$A[i-j+1,i]$和$A[1,j]$相等</p>
+<p>所以说$A[i-j+1,i-1]$和$A[1,j-1]$必然相等</p>
+<p>所以我们在计算$nxt[i]$时，只需要把$nxt[i-1]+1$ , $nxt[nxt[i-1]]+1$ , $nxt[nxt[nxt[i-1]]]+1$ ……</p>
+<p>作为border即可，且它们一定是从大到小排列</p>
+<p>最后，我们就可以告诉大家怎么求了</p>
+<p>首先，我们把$nxt[1]$赋为0</p>
+<p>假设我们已经处理到第$i$位($2\leq i\leq len$)</p>
+<p>那么此时$nxt[1]$到$nxt[i]$的值都是已知的</p>
+<p>我们假设当前的候选项是$j$</p>
+<p>我们要处理$i+1$时，若$j+1$和$i+1$不可以匹配就让$j$跳到$nxt[i]$，若可以匹配或者现在border已经变成0了，就要把$nxt[i+1]$搞成$j$</p>
+<p>放个代码</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> nxt[N];<span class="keyword">char</span> s[N],t[N];</span><br><span class="line"><span class="keyword">int</span> n,m,f[N];<span class="comment">//s是短串，t是长串</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_nxt</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>,j=<span class="number">0</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(s[j+<span class="number">1</span>]!=s[i] &amp;&amp; j) j=nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(s[j+<span class="number">1</span>]==s[i]) j++;</span><br><span class="line">        nxt[i]=j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后有人要问了，那你求$nxt$有什么意义吗，我们要求的不是$nxt$啊</p>
+<p>那么我们此时再假设一个$f$数组表示$f[i]=max${$j$}，$j$表示S的前j位与T的$T[i-j+1,i]$位相等</p>
+<p>我们发现是不是$f$数组的定义其实和$T$数组几乎一样啊</p>
+<p>所以我们可以直接用求$nxt$数组的思想，写出求长串的思想：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">get_f</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,j=<span class="number">0</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(j &amp;&amp; (s[j+<span class="number">1</span>]!=t[i] || j==n)) j=nxt[j];</span><br><span class="line">        <span class="keyword">if</span>(s[j+<span class="number">1</span>]==t[i]) j++;</span><br><span class="line">        f[i]=j</span><br><span class="line">        <span class="keyword">if</span>(f[i]==n) cout&lt;&lt;i-n+<span class="number">1</span>&lt;&lt;endl;<span class="comment">//如果S串整个串都出现了，就输出匹配的第一个位置</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

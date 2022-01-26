@@ -1,0 +1,369 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>多项式全家桶 - Light up the sky</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="多项式全家桶导数公式$(C)^{‘}=0$                                   $(x^\mu)’=\mu x^{\mu-1}$
+$(a^x)’=a^x\ln x$ ,"> 
+    <meta name="author" content="RevolutionBP"> 
+    <link rel="alternative" href="atom.xml" title="Light up the sky" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="多项式全家桶 - Light up the sky"/>
+    <meta name="twitter:description" content="多项式全家桶导数公式$(C)^{‘}=0$                                   $(x^\mu)’=\mu x^{\mu-1}$
+$(a^x)’=a^x\ln x$ ,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Light up the sky"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="多项式全家桶 - Light up the sky"/>
+    <meta property="og:description" content="多项式全家桶导数公式$(C)^{‘}=0$                                   $(x^\mu)’=\mu x^{\mu-1}$
+$(a^x)’=a^x\ln x$ ,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Light up the sky</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">多项式全家桶</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">多项式全家桶</h1>
+        <div class="stuff">
+            <span>九月 01, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="多项式全家桶"><a href="#多项式全家桶" class="headerlink" title="多项式全家桶"></a>多项式全家桶</h1><h2 id="导数公式"><a href="#导数公式" class="headerlink" title="导数公式"></a>导数公式</h2><p>$(C)^{‘}=0$                                   $(x^\mu)’=\mu x^{\mu-1}$</p>
+<p>$(a^x)’=a^x\ln x$ ( $a$ 为常数）    $(\sin x)’=\cos x$</p>
+<p>$(\cos x)’=-\sin x$                    $(\tan x)’=\sec^2x$</p>
+<p>$(\cot x)’=-\csc^2x$                  $(\sec x)’=\sec x \cot x$</p>
+<p>$(\csc x)’=-\csc x\cot x$           $(\ln x)’=\dfrac{1}{x}$</p>
+<p>$({\log_a}^x)’=\dfrac{1}{x\ln a}$                    $(e^x)’=e^x$</p>
+<p>加减公式：</p>
+<p>$(u\pm v)’=u’\pm v’$           $(Cu)’=Cu’$ （C是常数）</p>
+<p>$(uv)’=u’v+uv’$            $(\dfrac{u}{v})’=(\dfrac{u’v-uv’}{v^2})$</p>
+<h2 id="FFT"><a href="#FFT" class="headerlink" title="FFT"></a>FFT</h2><h3 id="复数"><a href="#复数" class="headerlink" title="复数"></a>复数</h3><p>设$a,b$为实数，$i^2=-1$，形如$a+bi$的数叫复数，其中$i$被称为虚数单位，复数域是目前已知最大的域</p>
+<p>在复平面中，$x$ 代表实数，$y$ 轴（除原点外的点）代表虚数，从原点$(0,0)$到$(a,b)$的向量表示复数$a+bi$</p>
+<p>模长：从原点$(0,0)$到点$(a,b)$的距离，即$\sqrt{a^2+b^2}$</p>
+<p>幅角：假设以逆时针为正方向，从x<em>x</em>轴正半轴到已知向量的转角的有向角叫做幅角</p>
+<p>计算：平行四边形法则(其实就是分配律)，注意这里的$i^2$为-1：</p>
+<p>几何定义：复数相乘，模长相乘，幅角相加<del>(至今我也没看懂)</del></p>
+<p>$(a+bi)\times (c+di)=ac+bdi^2+bci+adi=ac-bd+(bc+ad)i$</p>
+<h3 id="多项式表示法"><a href="#多项式表示法" class="headerlink" title="多项式表示法"></a>多项式表示法</h3><h4 id="系数表示法："><a href="#系数表示法：" class="headerlink" title="系数表示法："></a>系数表示法：</h4><p>设$A(x)$表示一个$x-1$次多项式</p>
+<p>则$A(x)=\sum_{i=0}^{n} a_i * x^i$</p>
+<p>例如：$A(3)=2+3\times x+x^2$</p>
+<p>利用这种方法计算多项式乘法复杂度为$O(n^2)$</p>
+<p>（第一个多项式中每个系数都需要与第二个多项式的每个系数相乘）</p>
+<p>利用这种方法计算多项式乘法的时间复杂度为$O(n^2)$</p>
+<h4 id="点值表示法"><a href="#点值表示法" class="headerlink" title="点值表示法"></a>点值表示法</h4><p>将 $n$ 互不相同的 $x$ 带入多项式，会得到 $n$ 个不同的取值 $y$</p>
+<p>则该多项式被这 $n$ 个点 $(x_1,y_1),(x_2,y_2)\dots(x_n,y_n)$ 唯一确定</p>
+<p>其中$y_i=\sum_{j=0}^{n-1} a_j\times x_i^j$</p>
+<p>例如：上面的例子用点值表示法可以为$(0,2)~(1,5)~(2,12)$</p>
+<p>利用这种方法计算多项式乘法的时间复杂度仍然为$O(n^2)$</p>
+<p>可以发现，大整数乘法复杂度的瓶颈可能在“多项式转换成点值表示”这一步（以及其反向操作），只要完成这一步就可以$O(n)$求答案了。</p>
+<h3 id="单位根"><a href="#单位根" class="headerlink" title="单位根"></a>单位根</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>在后面我们默认 $n$ 为 2 的整数次幂</p>
+<p>在复平面上，以原点为圆心，1为半径作圆，所得的圆叫单位圆。以圆点为起点，圆的$n$等分点为终点，做$n$个向量，设幅角为正且最小的向量对应的复数为$\omega_n$，称为$n$次单位根。</p>
+<p>根据复数乘法的运算法则，其余$n-1$个复数为$\omega_n^2,\omega_n^3\ldots\omega_n^n$</p>
+<p>就算他们的值，我们可以用欧拉公式：$\omega_{n}^{k}=\cos\ k <em>\dfrac{2\pi}{n}+i\sin k</em>\dfrac{2\pi}{n}$</p>
+<p>单位根的幅角为周角的$\dfrac{1}{n}$</p>
+<p>在代数中，若$z^n=1$，我们把$z$称为$n$次单位根</p>
+<h4 id="单位根的性质与反演"><a href="#单位根的性质与反演" class="headerlink" title="单位根的性质与反演"></a>单位根的性质与反演</h4><p>单位根的<strong>性质</strong>：</p>
+<ol>
+<li><p>$\omega _n ^k =\cos~k\dfrac{2\pi}{n}+i\times \sin~k\dfrac{2\pi}{n}$</p>
+</li>
+<li><p>$\omega _{2n}^{2k}=\omega _n^k$</p>
+</li>
+<li>$\omega_n^{k+\frac{n}{2}}=-\omega _n^k$</li>
+<li>$\omega_n^0=\omega _n^n=1$</li>
+</ol>
+<p>第二条的证明：</p>
+<p>$\omega ^{2k}_{2n}=\cos ~2k\dfrac{2\pi}{2n}+i\sin2k\dfrac{2\pi}{2n}$</p>
+<p>约分后就和原来一样了</p>
+<p>第三条同上，约分即可</p>
+<p>单位根<strong>反演</strong>：</p>
+<script type="math/tex; mode=display">
+\forall k,[n\mid k]=\dfrac{1}{n}\sum_{i=0}^{n-1}w_n^{ik}\dots①</script><p>证明：</p>
+<p>当$~k\mid n$ 时：由 $\omega_n^0=\omega_n^n~~~$得:$\omega_n^{ik}=1$故原式等于1</p>
+<p>当 $k\nmid n$ 时：原式乘上$\omega_n^k$可化成</p>
+<script type="math/tex; mode=display">
+\dfrac{1}{n}\sum_{i=1}^{n}w_n^{ik}\dots②</script><p>②减①得：</p>
+<script type="math/tex; mode=display">
+\dfrac{1}{n}\dfrac{\omega_{n}^{nk}-\omega_n^0}{\omega_n^k-1}</script><p>易得上式为0</p>
+<h3 id="complex"><a href="#complex" class="headerlink" title="complex"></a>complex</h3><p>C++的STL提供了复数模板！<br>头文件：<code>#include &lt;complex&gt;</code><br>定义： <code>complex&lt;double&gt; x;</code><br>运算：直接使用加减乘除</p>
+<h3 id="快速傅里叶变换（FFT）"><a href="#快速傅里叶变换（FFT）" class="headerlink" title="快速傅里叶变换（FFT）"></a>快速傅里叶变换（FFT）</h3><h4 id="为什么要使用单位根作为-x-代入"><a href="#为什么要使用单位根作为-x-代入" class="headerlink" title="为什么要使用单位根作为$x$代入"></a>为什么要使用单位根作为$x$代入</h4><p>规定我们带入的点值为$n$个单位根</p>
+<p>设$(y_0,y_1,y_2\dots y_{n-1})$为多项式$A(x)$的离散傅里叶变换（即把$\omega_n^0,\omega_n^1\dots\omega_n^{n-1}$代入上式后的结果）</p>
+<p>我们再设一个多项式$B(x)$其各位系数为上述的$y$</p>
+<p>现在，我们把上述单位根的倒数，即$\omega_n^{-1},\omega_n^{-2}\dots\omega_n^{1-n}$代入$B(x)$得$(z_0,z_1\dots z_{n-1})$，那么有</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+z_k&=&\sum_{i=0}^{n-1}y_i(\omega_n^{-k})^i\\
+&=&\sum_{i=0}^{n-1}(\sum_{j=0}^{n-1}a_j(\omega_n^i)^j)(\omega_n^{-k})^i
+\\&=&\sum_{i=0}^{n-1}a_j(\sum_{j=0}^{n-1}(\omega_n^{j-k})^i)
+\end{eqnarray}</script><p>最下面括号里的式子$\sum_{j=0}^{n-1}(\omega_n^{j-k})^i$显然是能求的</p>
+<p>当 $k=j$ 时，该式为$n$</p>
+<p>当 $k\ne j$ 时</p>
+<p>通过等比数列求和可以得出</p>
+<script type="math/tex; mode=display">
+\dfrac{(\omega_n^{j-k})^n-1}{\omega_n^{j-k}-1}=\dfrac{1-1}{\omega_n^{j-k}-1}=0</script><p>所以我们有</p>
+<script type="math/tex; mode=display">
+z_k=na_k</script><p>因此我们可以发现：</p>
+<p>把多项式$A(x)$的离散傅里叶变换结果作为另一个多项式$B(x)$的系数，取单位根的倒数即$\omega ^0_n,\omega ^{−1}_n,\omega ^{−2}_n,…,\omega ^{-(n−1)}_n$作为$x$代入$B(x)$，得到的每个数再除以$n$，得到的就是$A(x)$的各项系数</p>
+<h4 id="快速傅里叶变换的数学证明"><a href="#快速傅里叶变换的数学证明" class="headerlink" title="快速傅里叶变换的数学证明"></a>快速傅里叶变换的数学证明</h4><p>我们考虑把一个普通的多项式按奇偶性分类，有：</p>
+<script type="math/tex; mode=display">
+A(x)=(a_0+a_2\times x^2+a_4\times x^4+⋯+a_{n−2}\times x^{n−2})+(a_1\times x+a_3\times x^3+a_5\times x^5+⋯+a_{n−1}\times x^{n−1})</script><p>所以我们设成两个多项式：</p>
+<p>$A_1(x)=a_0+a_2x+a_4x^2+⋯+a_{n−2}x^{\frac{n}{2}-1}$</p>
+<p>$A_2(x)=a_1+a_3x+a_5x^2+⋯+a_{n−1}x^{\frac{n}{2}-1}$</p>
+<p>因此$A(x)=A_1(x^2)+xA_2(x^2)$</p>
+<p>假设当前$k&lt;\frac{n}{2}$，现再我们要代入$x=\omega_n^k$</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+A(\omega_n^k)&=&A_1(\omega_n^{2k})+\omega_n^kA_2(\omega^{2k}_n)
+\\&=&A1(\omega_{\frac{n}{2}}^{k})+\omega_n^kA_2(\omega^k_{\frac{n}{2}})
+\end{eqnarray}</script><p>我们再代入$x=\omega_n^{k+\frac{n}{2}}$</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+A(\omega_n^{k+\frac{n}{2}})&=&A_1(\omega_n^{2k+n})+\omega_n^{k+\frac{n}{2}}A_2(\omega^{2k+n}_n)
+\\&=&A1(\omega_{\frac{n}{2}}^{k})-\omega_n^kA_2(\omega^k_{\frac{n}{2}})
+\end{eqnarray}</script><p>因此，只要我们求出$A_1(x)$和$A_2(x)$分别在$\omega_{\frac{n}{2}}^0,\omega_{\frac{n}{2}}^1,\omega_{\frac{n}{2}}^2$等的点值表示，就可以$O(n)$的求出$A(x)$的点值表示了。分治的边界是$n=1$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN=<span class="number">2</span>*<span class="number">1e6</span>+<span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> c=<span class="built_in">getchar</span>();<span class="keyword">int</span> x=<span class="number">0</span>,f=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(c&lt;<span class="string">&#x27;0&#x27;</span>||c&gt;<span class="string">&#x27;9&#x27;</span>)&#123;<span class="keyword">if</span>(c==<span class="string">&#x27;-&#x27;</span>)f=<span class="number">-1</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">while</span>(c&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;c&lt;=<span class="string">&#x27;9&#x27;</span>)&#123;x=x*<span class="number">10</span>+c-<span class="string">&#x27;0&#x27;</span>;c=<span class="built_in">getchar</span>();&#125;</span><br><span class="line">    <span class="keyword">return</span> x*f;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> Pi=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">complex</span>&#123;</span></span><br><span class="line">    <span class="keyword">double</span> x,y;</span><br><span class="line">    <span class="built_in">complex</span> (<span class="keyword">double</span> xx=<span class="number">0</span>,<span class="keyword">double</span> yy=<span class="number">0</span>)&#123;x=xx,y=yy;&#125;</span><br><span class="line">&#125;a[MAXN],b[MAXN];</span><br><span class="line">complex <span class="keyword">operator</span> + (complex a,complex b)&#123; <span class="keyword">return</span> <span class="built_in">complex</span>(a.x+b.x , a.y+b.y);&#125;</span><br><span class="line">complex <span class="keyword">operator</span> - (complex a,complex b)&#123; <span class="keyword">return</span> <span class="built_in">complex</span>(a.x-b.x , a.y-b.y);&#125;</span><br><span class="line">complex <span class="keyword">operator</span> * (complex a,complex b)&#123; <span class="keyword">return</span> <span class="built_in">complex</span>(a.x*b.x-a.y*b.y , a.x*b.y+a.y*b.x);&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fast_fast_tle</span><span class="params">(<span class="keyword">int</span> len,complex *a,<span class="keyword">int</span> type)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(len==<span class="number">1</span>) <span class="keyword">return</span> ;</span><br><span class="line">    complex a1[len&gt;&gt;<span class="number">1</span>],a2[len&gt;&gt;<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=len;i+=<span class="number">2</span>) a1[i&gt;&gt;<span class="number">1</span>]=a[i],a2[i&gt;&gt;<span class="number">1</span>]=a[i+<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">fast_fast_tle</span>(len&gt;&gt;<span class="number">1</span>,a1,type);</span><br><span class="line">    <span class="built_in">fast_fast_tle</span>(len&gt;&gt;<span class="number">1</span>,a2,type);</span><br><span class="line">    complex Wn=<span class="built_in">complex</span>(<span class="built_in">cos</span>(<span class="number">2.0</span>*Pi/len),type*<span class="built_in">sin</span>(<span class="number">2.0</span>*Pi/len)),w=<span class="built_in">complex</span>(<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;(len&gt;&gt;<span class="number">1</span>);i++,w=w*Wn)</span><br><span class="line">        a[i]=a1[i]+w*a2[i],</span><br><span class="line">        a[i+(len&gt;&gt;<span class="number">1</span>)]=a1[i]-w*a2[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N=<span class="built_in">read</span>(),M=<span class="built_in">read</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=N;i++) a[i].x=<span class="built_in">read</span>();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=M;i++) b[i].x=<span class="built_in">read</span>();</span><br><span class="line">    <span class="keyword">int</span> len=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(len&lt;=N+M) len&lt;&lt;=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">fast_fast_tle</span>(len,a,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">fast_fast_tle</span>(len,b,<span class="number">1</span>);</span><br><span class="line">    <span class="comment">//type为1表示从系数变为点值</span></span><br><span class="line">    <span class="comment">//-1表示从点值变为系数 </span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=len;i++) a[i]=a[i]*b[i];</span><br><span class="line">    <span class="built_in">fast_fast_tle</span>(len,a,<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=N+M;i++) <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,(<span class="keyword">int</span>)(a[i].x/len+<span class="number">0.5</span>));<span class="comment">//按照我们推倒的公式，这里还要除以n </span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="优化FFT"><a href="#优化FFT" class="headerlink" title="优化FFT"></a>优化FFT</h3><h4 id="递归优化"><a href="#递归优化" class="headerlink" title="递归优化"></a>递归优化</h4><p>在进行$\text{fft}$时，我们要把各个系数不断分组并放到两侧，那么一个系数原来的位置和最终的位置有什么规律呢？</p>
+<p>初始位置：0 1 2 3 4 5 6 7<br>第一轮后：0 2 4 6|1 3 5 7<br>第二轮后：0 4|2 6|1 5|3 7<br>第三轮后：0|4|2|6|1|5|3|7</p>
+<p>用|隔开各组数据</p>
+<p>我们把二进制拉出来，发现一个位置a上的数，最后所在的位置是a二进制翻转得到的数</p>
+<p>那么我们可以据此写出非递归版本$\text{fft}$：先把每个数放到最后的位置上，然后不断向上还原，同时求出点值表示。</p>
+<h4 id="蝴蝶操作"><a href="#蝴蝶操作" class="headerlink" title="蝴蝶操作"></a>蝴蝶操作</h4><p>貌似也没啥，就是把东西先存上再用，感觉直接看模板就懂了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">4e6</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="built_in">acos</span>(<span class="number">-1.0</span>);</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">    x=<span class="number">0</span>;<span class="keyword">int</span> f=<span class="number">0</span>;<span class="keyword">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">for</span>(;!<span class="built_in">isdigit</span>(c);c=<span class="built_in">getchar</span>()) f |= c==<span class="string">&#x27;-&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(;<span class="built_in">isdigit</span>(c);c=<span class="built_in">getchar</span>()) x=x*<span class="number">10</span>+(c^<span class="number">48</span>);</span><br><span class="line">    <span class="keyword">if</span>(f) x=-x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(T x,<span class="keyword">char</span> ch)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;<span class="number">0</span>) <span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>),x=-x;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">short</span> st[<span class="number">30</span>],tp;</span><br><span class="line">    <span class="keyword">do</span> st[++tp]=x%<span class="number">10</span>,x/=<span class="number">10</span>; <span class="keyword">while</span>(x);</span><br><span class="line">    <span class="keyword">while</span>(tp) <span class="built_in">putchar</span>(st[tp--] | <span class="number">48</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(ch);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> rev[N],b;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cp</span>&#123;</span></span><br><span class="line">    <span class="keyword">double</span> x,y;</span><br><span class="line">    <span class="built_in">cp</span>()&#123;x=<span class="number">0</span>,y=<span class="number">0</span>;&#125;</span><br><span class="line">    <span class="built_in">cp</span>(<span class="keyword">double</span> xx,<span class="keyword">double</span> yy)&#123;x=xx,y=yy;&#125;</span><br><span class="line">&#125;f[N],g[N],ans[N];</span><br><span class="line">cp <span class="keyword">operator</span> + (cp a,cp b)&#123;<span class="keyword">return</span> <span class="built_in">cp</span>(a.x+b.x,a.y+b.y);&#125;</span><br><span class="line">cp <span class="keyword">operator</span> - (cp a,cp b)&#123;<span class="keyword">return</span> <span class="built_in">cp</span>(a.x-b.x,a.y-b.y);&#125;</span><br><span class="line">cp <span class="keyword">operator</span> * (cp a,cp b)&#123;<span class="keyword">return</span> <span class="built_in">cp</span>(a.x*b.x-a.y*b.y,a.x*b.y+a.y*b.x);&#125;                                                                                                  </span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">FFT</span><span class="params">(<span class="keyword">int</span> n,cp *a,<span class="keyword">int</span> type)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="keyword">if</span>(i&lt;rev[i]) <span class="built_in">swap</span>(a[i],a[rev[i]]);<span class="comment">//蝴蝶操作，说实话，我都没看懂哪里来的蝴蝶</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> len=<span class="number">1</span>;len&lt;n;len&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="function">cp <span class="title">w1</span><span class="params">(cos(pi/len),sin(pi/len)*type)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i+=(len&lt;&lt;<span class="number">1</span>))&#123;</span><br><span class="line">            <span class="function">cp <span class="title">w</span><span class="params">(<span class="number">1</span>,<span class="number">0</span>)</span></span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;len;j++)&#123;</span><br><span class="line">                cp x=a[i+j],y=w*a[i+j+len];</span><br><span class="line">                a[i+j]=x+y; a[i+j+len]=x-y;</span><br><span class="line">                w=w*w1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n,m,k=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">read</span>(n),<span class="built_in">read</span>(m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;i++) <span class="built_in">read</span>(f[i].x);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=m;i++) <span class="built_in">read</span>(g[i].x);</span><br><span class="line">    <span class="keyword">while</span>(k&lt;=n+m) k&lt;&lt;=<span class="number">1</span>,b++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;k;i++)rev[i]=(rev[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>)|((i&amp;<span class="number">1</span>)&lt;&lt;(b<span class="number">-1</span>));<span class="comment">//rev[i]表示i翻转后的值 一个简单DP</span></span><br><span class="line">    <span class="built_in">FFT</span>(k,f,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">FFT</span>(k,g,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=k;i++) ans[i]=f[i]*g[i];</span><br><span class="line">    <span class="built_in">FFT</span>(k,ans,<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n+m;i++) <span class="built_in">write</span>((<span class="keyword">int</span>)(ans[i].x/k+<span class="number">0.5</span>),<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="NTT"><a href="#NTT" class="headerlink" title="NTT"></a>NTT</h2><h3 id="阶"><a href="#阶" class="headerlink" title="阶"></a>阶</h3><p>设 $r,n$ 是互素的整数， $r \not = 0$ ，$n&gt;0$ ，使得 $r^x\equiv 1 \pmod n$ 成立的<strong>最小正整数</strong></p>
+<p>$x$ 称为 $r$ 模 $x$ 的<strong>阶</strong>，标为 $\text{ord}_n r$  </p>
+<h3 id="原根"><a href="#原根" class="headerlink" title="原根"></a>原根</h3><p>如果 $r,n$ 都是互素的正整数，当 $\text{ord}_nr=\varphi(n)$ 时，称 $r$ 是模 $n$ 的原根，即 $r$ 是 $n$ 的原根</p>
+<p>我们令 $n$ 为大于 $1$ 的 $2$ 的幂，$p$ 为素数且 $n \mid (p-1)$，$g$ 为 $p$ 的一个原根</p>
+<p>我们设</p>
+<script type="math/tex; mode=display">
+g_n=g^{\frac{p-1}{n}}</script><p>所以</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+g_n^n&=&g^{n·\frac{p-1}{n}}=g^{p-1}
+\\g_n^{\frac{n}{2}}&=&g^{\frac{g-1}{2}}
+\\g_{an}^{ak}&=&g^{\frac{ak(p-1)}{an}}=g^{\frac{k(p-1)}{n}}=g_n^k
+\end{eqnarray}</script><p>我们发现，原根包含着单位根的所有性质，所以我们就可以用原根代替单位根</p>
+<p>最大优点：保持精度不变</p>
+<p>特殊记忆：998244353的原根是3</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">4e6</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> G=<span class="number">3</span>,invG=<span class="number">332748118</span>;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">    x=<span class="number">0</span>;<span class="keyword">int</span> f=<span class="number">0</span>;<span class="keyword">char</span> c=<span class="built_in">getchar</span>();</span><br><span class="line">    <span class="keyword">for</span>(;!<span class="built_in">isdigit</span>(c);c=<span class="built_in">getchar</span>()) f |= c==<span class="string">&#x27;-&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(;<span class="built_in">isdigit</span>(c);c=<span class="built_in">getchar</span>()) x=x*<span class="number">10</span>+(c^<span class="number">48</span>);</span><br><span class="line">    <span class="keyword">if</span>(f) x=-x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">write</span><span class="params">(T x,<span class="keyword">char</span> ch)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;<span class="number">0</span>) <span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>),x=-x;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">short</span> st[<span class="number">30</span>],tp;</span><br><span class="line">    <span class="keyword">do</span> st[++tp]=x%<span class="number">10</span>,x/=<span class="number">10</span>; <span class="keyword">while</span>(x);</span><br><span class="line">    <span class="keyword">while</span>(tp) <span class="built_in">putchar</span>(st[tp--] | <span class="number">48</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(ch);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">power</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(k)&#123;</span><br><span class="line">		<span class="keyword">if</span>(k&amp;<span class="number">1</span>) ans=ans*x%mod;</span><br><span class="line">		x=x*x%mod;</span><br><span class="line">		k&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> rev[N],b;</span><br><span class="line"><span class="keyword">int</span> f[N],g[N],ans[N];                                                                                        </span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">FFT</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> *a,<span class="keyword">int</span> type)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="keyword">if</span>(i&lt;rev[i]) <span class="built_in">swap</span>(a[i],a[rev[i]]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> len=<span class="number">1</span>;len&lt;n;len&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> w1=<span class="built_in">power</span>(type==<span class="number">1</span>?G:invG,(mod<span class="number">-1</span>)/(len&lt;&lt;<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i+=(len&lt;&lt;<span class="number">1</span>))&#123;</span><br><span class="line">            <span class="keyword">int</span> w=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;len;j++)&#123;</span><br><span class="line">                <span class="keyword">int</span> x=a[i+j]%mod,y=w*a[i+j+len]%mod;</span><br><span class="line">                a[i+j]=(x+y)%mod; a[i+j+len]=(((x-y)%mod)+mod)%mod;</span><br><span class="line">                w=w*w1%mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(type==<span class="number">1</span>) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">int</span> ny=<span class="built_in">power</span>(n,mod<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) a[i]=(a[i]*ny+mod)%mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> n,m,k=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">// system(&quot;fc 1.out 1.ans&quot;);</span></span><br><span class="line">	<span class="comment">// freopen(&quot;1.in&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	<span class="comment">// freopen(&quot;1.out&quot;,&quot;w&quot;,stdout);</span></span><br><span class="line">    <span class="built_in">read</span>(n),<span class="built_in">read</span>(m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;i++) <span class="built_in">read</span>(f[i]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=m;i++) <span class="built_in">read</span>(g[i]);</span><br><span class="line">    <span class="keyword">while</span>(k&lt;=n+m) k&lt;&lt;=<span class="number">1</span>,b++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;k;i++)rev[i]=(rev[i&gt;&gt;<span class="number">1</span>]&gt;&gt;<span class="number">1</span>)|((i&amp;<span class="number">1</span>)&lt;&lt;(b<span class="number">-1</span>));</span><br><span class="line">    <span class="built_in">FFT</span>(k,f,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">FFT</span>(k,g,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=k;i++) ans[i]=f[i]*g[i]%mod;</span><br><span class="line">    <span class="built_in">FFT</span>(k,ans,<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n+m;i++) <span class="built_in">write</span>(ans[i],<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多项式乘法逆"><a href="#多项式乘法逆" class="headerlink" title="多项式乘法逆"></a>多项式乘法逆</h2><h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定一个多项式 $F(x)$ ，请求出一个多项式 $G(x)$， 满足 $F(x)*G(x)\equiv 1\pmod{x^n}$。系数对 $998244353$ 取模。</p>
+<h4 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h4><p>首先，若 $x$ 只有 $1$ 项时，我们的 $G(x)$ 就是 $x$ 的逆元，不然的话，我们就可以递归求解</p>
+<p>我们假设当前已知：</p>
+<script type="math/tex; mode=display">
+F(x)*H(x)\equiv1\pmod{x^{\lfloor \frac{n}{2} \rfloor}}</script><p>由于 </p>
+<script type="math/tex; mode=display">
+F(x)*G(x)\equiv1\pmod {x^n}</script><p>显然：</p>
+<script type="math/tex; mode=display">
+F(x)*G(x)\equiv1\pmod {x^{\lfloor \frac{n}{2} \rfloor}}</script><p>两式相减，我们就可以得到：</p>
+<script type="math/tex; mode=display">
+F(x)*(G(x)-H(x))\equiv0\pmod{x^{\lfloor \frac{n}{2} \rfloor}}</script><p>左右同时把 $F(x)$ 去掉，则有</p>
+<script type="math/tex; mode=display">
+G(x)-H(x)\equiv0\pmod {x^{\lfloor\frac{n}{2}\rfloor}}</script><p>然后我们左右同时平方可以发现：</p>
+<script type="math/tex; mode=display">
+(G(x)-H(x))^2\equiv0\pmod{x^{n}}</script><p>拆开后有：</p>
+<script type="math/tex; mode=display">
+G^2(x)+H^2(x)-2G(x)H(x)\equiv 0\pmod {x^n}</script><p>再给两边乘上 $F(x)$，化简</p>
+<script type="math/tex; mode=display">
+F(x)*(G^2(x)+H^2(x)-2G(x)H(x))\equiv0\pmod{x^n}
+\\G(x)-2H(x)+F(x)H^2(x)\equiv0 \pmod {x^n}
+\\G(x)\equiv 2H(x)-F(x)H^2(x) \pmod {x^n}
+\\G(x) \equiv H(x)\times (2-F(x)H(x)) \pmod {x^n}</script><p>我们发现已经用 $H(x)$ 和 $F(x)$ 来代替 $G(x)$ 了。</p>
+<p>然后我们递归去找 $H(x)$ 就行</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">BlackPink is the Revolution</span></span><br><span class="line"><span class="comment">light up the sky</span></span><br><span class="line"><span class="comment">Blackpink in your area</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">3e6</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">998244353</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> G=<span class="number">3</span>,invG=<span class="number">332748118</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> scan&#123;</span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">        x=<span class="number">0</span>; <span class="keyword">char</span> c=<span class="built_in">getchar</span>(); <span class="keyword">int</span> f=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(; !<span class="built_in">isdigit</span>(c); c=<span class="built_in">getchar</span>()) f |= c==<span class="string">&#x27;-&#x27;</span>;</span><br><span class="line">        <span class="keyword">for</span>(; <span class="built_in">isdigit</span>(c); c=<span class="built_in">getchar</span>()) x = x*<span class="number">10</span>+(c^<span class="number">48</span>);</span><br><span class="line">        <span class="keyword">if</span>(f) x = -x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(T x,<span class="keyword">char</span> ch)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span>) <span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>), x = -x;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">short</span> st[<span class="number">30</span>],tp;</span><br><span class="line">        <span class="keyword">do</span> st[++tp] = x%<span class="number">10</span>, x/=<span class="number">10</span>; <span class="keyword">while</span>(x);</span><br><span class="line">        <span class="keyword">while</span>(tp) <span class="built_in">putchar</span>(st[tp--] | <span class="number">48</span>);</span><br><span class="line">        <span class="built_in">putchar</span>(ch);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> scan;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> rev[N];</span><br><span class="line"><span class="keyword">int</span> a[N],b[N];</span><br><span class="line"><span class="keyword">int</span> H[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">qpow</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> ans=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(y)&#123;</span><br><span class="line">		<span class="keyword">if</span>(y&amp;<span class="number">1</span>) ans=ans*x%mod;</span><br><span class="line">		x=(x*x)%mod;</span><br><span class="line">		y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">NTT</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> *a,<span class="keyword">int</span> type)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="keyword">if</span>(i&lt;rev[i]) <span class="built_in">swap</span>(a[i],a[rev[i]]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> len=<span class="number">1</span>;len&lt;n;len&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> w1=<span class="built_in">qpow</span>(type==<span class="number">1</span> ? G : invG , (mod<span class="number">-1</span>)/(len&lt;&lt;<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i+=(len&lt;&lt;<span class="number">1</span>))&#123;</span><br><span class="line">            <span class="keyword">int</span> w=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;len;j++)&#123;</span><br><span class="line">                <span class="keyword">int</span> x=a[i+j]%mod,y=w*a[i+j+len]%mod;</span><br><span class="line">                a[i+j]=(x+y)%mod; a[i+j+len]=(((x-y)%mod)+mod)%mod;</span><br><span class="line">                w=w*w1%mod;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(type==<span class="number">1</span>) <span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">int</span> ny=<span class="built_in">qpow</span>(n,mod<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) a[i]=(a[i]*ny+mod)%mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetInv</span><span class="params">(<span class="keyword">int</span> *F,<span class="keyword">int</span> *G,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n==<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> G[<span class="number">0</span>]=<span class="built_in">qpow</span>(F[<span class="number">0</span>],mod<span class="number">-2</span>),<span class="built_in"><span class="keyword">void</span></span>();</span><br><span class="line"></span><br><span class="line">	<span class="built_in">GetInv</span>(F,G,(n+<span class="number">1</span>)&gt;&gt;<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> len=<span class="number">1</span>,L=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(len &lt; (n&lt;&lt;<span class="number">1</span>)) len&lt;&lt;=<span class="number">1</span>,L++;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;i++) </span><br><span class="line">		rev[i]=(rev[i&gt;&gt;<span class="number">1</span>] &gt;&gt; <span class="number">1</span>) | ((i&amp;<span class="number">1</span>) &lt;&lt; (L<span class="number">-1</span>));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) H[i]=F[i];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&lt;len;i++) H[i]=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">NTT</span>(len,H,<span class="number">1</span>); <span class="built_in">NTT</span>(len,G,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">		G[i]=(((<span class="number">2ll</span>-G[i]*H[i]%mod)+mod)%mod*G[i]%mod);</span><br><span class="line">	<span class="built_in">NTT</span>(len,G,<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=n;i&lt;len;i++) G[i]=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">read</span>(n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">read</span>(a[i]),a[i]=(a[i]+mod)%mod;</span><br><span class="line">	<span class="built_in">GetInv</span>(a,b,n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">write</span>(b[i],<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多项式对数函数（多项式-ln）"><a href="#多项式对数函数（多项式-ln）" class="headerlink" title="多项式对数函数（多项式 ln）"></a>多项式对数函数（多项式 ln）</h2><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>给出 $n-1$ 次多项式 $F(x)$ ，求一个 $\bmod x^n$ 下的多项式 $G(x)$，满足 $G(x)\equiv \ln F(x)\pmod {x^n}$ </p>
+<p>首先，我们令 $f(x)=\ln(x)$</p>
+<p>则原式可化为 $G(x)\equiv f(F(x))\pmod{x^n}$</p>
+<p>我们对两边同时求导有：</p>
+<p>$G’(x) \equiv f’(F(x))F’(x) \pmod {x^{n-1}}$</p>
+<p>由于 $\ln’(x)=\dfrac{1}{x}$</p>
+<p>$G’(x)\equiv\dfrac{F’(x)}{F(x)}  \pmod{x^{n-1}}$</p>
+<p>那么我们此时再积回去，得到最终式子</p>
+<script type="math/tex; mode=display">
+G(x)=\int \dfrac{F'(x)}{F(x)} \pmod{x^n}</script><p> 至于积分和求导的求解，直接看就行</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Direv</span><span class="params">(<span class="keyword">int</span> *A,<span class="keyword">int</span> *B,<span class="keyword">int</span> len)</span></span>&#123; <span class="comment">//求导</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;++i) B[i<span class="number">-1</span>]=<span class="built_in">mul</span>(A[i],i); B[len<span class="number">-1</span>]=<span class="number">0</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Inter</span><span class="params">(<span class="keyword">int</span> *A,<span class="keyword">int</span> *B,<span class="keyword">int</span> len)</span></span>&#123; <span class="comment">//积分</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;len;++i) B[i]=<span class="built_in">mul</span>(A[i<span class="number">-1</span>],<span class="built_in">ksm</span>(i,P<span class="number">-2</span>)); B[<span class="number">0</span>]=<span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Ln</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> *b,<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">	<span class="built_in">Direv</span>(a,A,len),<span class="built_in">Inv</span>(a,B,len);<span class="keyword">int</span> l=len&lt;&lt;<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">NTT</span>(A,<span class="number">1</span>,l),<span class="built_in">NTT</span>(B,<span class="number">1</span>,l);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;l;++i) A[i]=<span class="built_in">mul</span>(A[i],B[i]);</span><br><span class="line">	<span class="built_in">NTT</span>(A,<span class="number">-1</span>,l),<span class="built_in">Inter</span>(A,b,len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多项式开根"><a href="#多项式开根" class="headerlink" title="多项式开根"></a>多项式开根</h2><h4 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定一个 $n-1$ 次多项式 $A(x)$ ，在 $\bmod x^n$ 意义下的多项式 $B(x)$ ，使得 $B^2(x)\equiv A(x) \pmod {x^n}$。若有多解，请取零次项系数较小的作为答案。</p>
+<p>这个和上面那个差不多吧，顶多就是换个推导过程</p>
+<p>假设我们已知：</p>
+<script type="math/tex; mode=display">
+H^2(x)\equiv F(x) \pmod {x^{\lceil \frac n 2 \rceil}}</script><p>易知：</p>
+<script type="math/tex; mode=display">
+G(x)\equiv H(x) \pmod {x^n}</script><p>我们继续推导可得：</p>
+<script type="math/tex; mode=display">
+G^2(x)-2H(x)\times G(x)+H^2(x)\equiv 0\pmod{x^n}\\
+F(x)-2H(x)\times G(x)+H^2(x)\equiv 0 \pmod{x^n}\\
+G(x)\equiv \dfrac{F(x)+H^2(x)}{2H(x)} \pmod {x^n}</script><p>由于题目要求0次项系数最小的最为答案，所以</p>
+<script type="math/tex; mode=display">
+G(x)=\dfrac{F(x)+H^2(x)}{2H(x)}</script><p>直接进行多项式求逆和NTT即可</p>
+<p>边界：$B_0=\sqrt{A_0}=1$ (二次剩余)</p>
+<h2 id="泰勒展开"><a href="#泰勒展开" class="headerlink" title="泰勒展开"></a>泰勒展开</h2><p>直接记公式吧：</p>
+<script type="math/tex; mode=display">
+G(F)=G\left(F_{0}\right)+G^{\prime}\left(F_{0}\right)\left(F-F_{0}\right)+G^{\prime \prime}\left(F_{0}\right)\left(F-F_{0}\right)^{2}+\cdots</script><h2 id="牛顿迭代"><a href="#牛顿迭代" class="headerlink" title="牛顿迭代"></a>牛顿迭代</h2><script type="math/tex; mode=display">
+G(x_0)\equiv G_0(x) \dfrac{F(G_0(x))}{}</script><h2 id="多项式指数函数（多项式-exp）"><a href="#多项式指数函数（多项式-exp）" class="headerlink" title="多项式指数函数（多项式 exp）"></a>多项式指数函数（多项式 exp）</h2><h4 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h4><p>给出 $n-1$ 次多项式 $A(x)$，求一个 $\bmod x^n$ 下的多项式 $B(x)$，满足 $B(x)\equiv e^{A(x)}$。系数对 $998244353$ 取模</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

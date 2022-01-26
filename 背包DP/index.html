@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>背包DP - Light up the sky</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="背包问题：有n个物品，每个重量为vi,权值为wi，每个物品仅用一次,问在背包容量为W里能装的最大价值01背包核心特点：每件物品最多只能用一次集合条件：核心：不漏下任何一个
+1.只从前i个物品中选2.,"> 
+    <meta name="author" content="RevolutionBP"> 
+    <link rel="alternative" href="atom.xml" title="Light up the sky" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="背包DP - Light up the sky"/>
+    <meta name="twitter:description" content="背包问题：有n个物品，每个重量为vi,权值为wi，每个物品仅用一次,问在背包容量为W里能装的最大价值01背包核心特点：每件物品最多只能用一次集合条件：核心：不漏下任何一个
+1.只从前i个物品中选2.,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Light up the sky"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="背包DP - Light up the sky"/>
+    <meta property="og:description" content="背包问题：有n个物品，每个重量为vi,权值为wi，每个物品仅用一次,问在背包容量为W里能装的最大价值01背包核心特点：每件物品最多只能用一次集合条件：核心：不漏下任何一个
+1.只从前i个物品中选2.,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Light up the sky</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">背包DP</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">背包DP</h1>
+        <div class="stuff">
+            <span>九月 01, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/DP/" rel="tag">DP</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="背包"><a href="#背包" class="headerlink" title="背包"></a>背包</h1><h5 id="问题：有n个物品，每个重量为vi-权值为wi，每个物品仅用一次-问在背包容量为W里能装的最大价值"><a href="#问题：有n个物品，每个重量为vi-权值为wi，每个物品仅用一次-问在背包容量为W里能装的最大价值" class="headerlink" title="问题：有n个物品，每个重量为vi,权值为wi，每个物品仅用一次,问在背包容量为W里能装的最大价值"></a>问题：有n个物品，每个重量为vi,权值为wi，每个物品仅用一次,问在背包容量为W里能装的最大价值</h5><h2 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h2><h5 id="核心特点：每件物品最多只能用一次"><a href="#核心特点：每件物品最多只能用一次" class="headerlink" title="核心特点：每件物品最多只能用一次"></a>核心特点：每件物品最多只能用一次</h5><h5 id="集合条件："><a href="#集合条件：" class="headerlink" title="集合条件："></a>集合条件：</h5><p>核心：不漏下任何一个</p>
+<p>1.只从前i个物品中选<br>2.总体积$\le$V</p>
+<h5 id="属性：Max"><a href="#属性：Max" class="headerlink" title="属性：Max"></a>属性：Max</h5><p>$f_{i,j}$据上面的假设，意义应该是在前i个物品，当前已选的物品的最大价值</p>
+<p>把$f_{i,j}$表示的所有选法分为两大类：</p>
+<p>1.不选第i个物品<br>2.选第i个物品</p>
+<h5 id="计算：-f-i-j"><a href="#计算：-f-i-j" class="headerlink" title="计算：$f_{i,j}$"></a>计算：<strong>$f_{i,j}$</strong></h5><p>如果是第1类的话显然</p>
+<script type="math/tex; mode=display">
+f_{i,j}=f_{i-1,j}</script><p>第2类的话我们考虑：<br>$f_{i,j}$应该可以从上一个位置推过来<br>那么上一个位置的背包容量应该就是 j-v[i]</p>
+<p>同时由于第i位的东西必须选<br>所以说这个位置的转移方程应该是</p>
+<script type="math/tex; mode=display">
+f_{i,j}=f_{i-1,j-v[i]}+w[i]</script><p>综上：我们要的应该是两个集合的最大值  所以说：</p>
+<script type="math/tex; mode=display">
+f_{i,j}=max(f_{i-1,j-v[i]}+w[i],f_{i-1,j})</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e3</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> v[N],w[N],f[N][N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;v[i]&gt;&gt;w[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=m;j++)&#123;</span><br><span class="line">            f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">            <span class="keyword">if</span>(j&gt;=v[i]) f[i][j]=<span class="built_in">max</span>(f[i][j],f[i<span class="number">-1</span>][j-v[i]]+w[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;f[n][m];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此时我们还可以考虑到一个问题我们发现第i个物品一定是从上一个物品的某一个体积的背包里整过来的</p>
+<p>那么我们就可以考虑空间的优化</p>
+<p>$f_{j}$让它表示背包容量为j时的最大容积即可</p>
+<p>那么我们看一下第二重循环</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=m;j++)&#123;</span><br><span class="line">    f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">    <span class="keyword">if</span>(j&gt;=v[i]) f[i][j]=<span class="built_in">max</span>(f[i][j],f[i<span class="number">-1</span>][j-v[i]]+w[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个我们直观考虑应该写成这样</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=m;j++)&#123;</span><br><span class="line">    f[j]=[j];</span><br><span class="line">    <span class="keyword">if</span>(j&gt;=v[i]) f[j]=<span class="built_in">max</span>(f[j],f[j-v[i]]+w[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先我们看f[j]=f[j]显然是一句废话，删掉就行</p>
+<p>$f[j]$的转移看着也没太大毛病</p>
+<p>等等，还有点问题</p>
+<p>首先，由于我们枚举的是体积，那么问题应该在于当j&lt;v[i]时，这个转移显然时废掉了（j-v[i]此时显然小于0）<br>所以我们可以从v[i]开始枚举</p>
+<p>其次，我们考虑一下，我们的第i种状态是不是都是从i-1转移而来的</p>
+<p>所以我们的此时是不是也应该做到我们每次取max的两个数也要是上一重循环的数，而不能是这次已经覆盖过的，因此，我们要从m枚举到v[i]</p>
+<p>综上所述：</p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e4</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> v[N],w[N],f[N][N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;v[i]&gt;&gt;w[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=v[i];j--) </span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-v[i]]+w[i]);</span><br><span class="line">    cout&lt;&lt;f[m];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<h2 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h2><p>核心特点：每件物品可以装无限次</p>
+<p>假设每一个物品背包装满时最多选k个</p>
+<p>那么转移方程很显然</p>
+<script type="math/tex; mode=display">
+f_{i,j}=max(f_{i-1,j},f_{i-1,j-k*v[i]}+k*w[i])</script><p>那么很容易得到朴素做法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e3</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> v[N],w[N],f[N][N];</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;v[i]&gt;&gt;w[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=m;j++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k*v[i]&lt;=j;k++)&#123;</span><br><span class="line">                f[i][j]=<span class="built_in">max</span>(f[i][j],f[i<span class="number">-1</span>][j - k * v[i]]+ k * w[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;f[n][m];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是这样是三重循环预计连1000 1000的数据都过不了，考虑优化</p>
+<p>我们可以把右边的玩意们列出来：</p>
+<script type="math/tex; mode=display">
+f_{i,j}=max(f_{i-1,j},f_{i-1,j-v[i]*1}+w[i],f_{i-1,j-v[i]*2}+w[i]*2...)</script><p>然后我们再写一个式子</p>
+<script type="math/tex; mode=display">
+f_{i,j-v[i]}=max(f_{i-1,j-v[i]*1},f_{i-1,j-v[i]*2}+w[i]*1...)</script><p>观察相似之处,我们发现第一个的那个式子除了第一个以外，其余的显然都是等于$f_{i,j-v[i]}+w[i]$的</p>
+<p>所以原式就可以轻易的化为</p>
+<script type="math/tex; mode=display">
+f_{i,j}=max(f_{i,j},f_{i,j-v[i]}+w[i])</script><p>瞬间干掉了k所在的那个循环</p>
+<p>而且我们借用上一个题的那个思想，空间方面i的这一层显然也可以干掉</p>
+<p>最终式子</p>
+<script type="math/tex; mode=display">
+f_{j}=max(f_{j},f_{j-v[i]}+w[i])</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e3</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> v[N],w[N],f[N];</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) cin&gt;&gt;v[i]&gt;&gt;w[i];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=v[i];j&lt;=m;j++)</span><br><span class="line">            f[j]=<span class="built_in">max</span>(f[j],f[j-v[i]]+w[i]);</span><br><span class="line">    cout&lt;&lt;f[m];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多重背包"><a href="#多重背包" class="headerlink" title="多重背包"></a>多重背包</h2><p>核心特点：每件物品最多有Si个</p>
+<p>朴素做法的话和刚才的朴素写法一样</p>
+<p>我们先把式子写出来</p>
+<script type="math/tex; mode=display">
+f_{i,j}=max(f_{i-1,j},f_{i-1,j-k*v[i]}+k*w[i])</script><h3 id="二进制优化"><a href="#二进制优化" class="headerlink" title="二进制优化"></a>二进制优化</h3><p>前置知识，一个数一定可以用$2^n$的数拼凑出来</p>
+<p>原因：1,2 可以凑出来1~3</p>
+<p>1~3分别加上4就是1~7</p>
+<p>同理也可以加上8</p>
+<p>证毕（<del>其实很显然啊喂</del>）</p>
+<p>然后我们就可以将1,2,4,8,16,32,64,128,256，c……分别打包成一个区间</p>
+<p>（$1+2+4……2^k+c=s$，$2^k＜c&lt;2^k+1$）</p>
+<p>然后很显然我们就可以把它转化成01背包问题了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2e4</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> w[N],v[N],f[N];</span><br><span class="line"><span class="keyword">int</span> n,m,cnt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> a,b,s,k=<span class="number">1</span>;</span><br><span class="line">        cin&gt;&gt;a&gt;&gt;b&gt;&gt;s;</span><br><span class="line">        <span class="keyword">while</span>(k&lt;=s)&#123;</span><br><span class="line">            v[++cnt]=a*k;</span><br><span class="line">            w[cnt]=b*k;</span><br><span class="line">            s-=k; k*=<span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(s) v[++cnt]=a*s,w[cnt]=b*s;</span><br><span class="line">    &#125;</span><br><span class="line">    n=cnt;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=m;j&gt;=v[i];j--) f[j]=<span class="built_in">max</span>(f[j],f[j-v[i]]+w[i]);</span><br><span class="line">    cout&lt;&lt;f[m];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于担心大家记混，我总结出了一个小技巧：</p>
+<p>对于前面的三个背包,只有完全背包是从小到大枚举空间，其余的一定是从大到小</p>
+<p>时间复杂度：$O(n^2logn)$</p>
+<h3 id="单调队列优化"><a href="#单调队列优化" class="headerlink" title="单调队列优化"></a>单调队列优化</h3><p>我们直接把式子全部列出来，会发现下面的性质：</p>
+<script type="math/tex; mode=display">
+f_{i,j}=max(f_{i-1,j},f_{i,j-v}+w,f_{i-1,j-2v}+2w……f_{i-1,j-sv}+sw)</script><script type="math/tex; mode=display">
+f_{i,j-v}=max(f_{i-1,j-v},f_{i-2,j-2v}+w......f_{i-1,j-sv}+(s-1)w,f_{i-1,(s+1)v}+sw)</script><p>其实上下我们发现是不能乱搞的，因为还有$f_{i-1,j}$和$f_{i-1,j-(s+1)v}+sw$是空白的</p>
+<p><img src="C:\Users\NOIstu\AppData\Roaming\Typora\typora-user-images\image-20211029180900981.png" alt="image-20211029180900981"></p>
+<p>所以我们就可以直接用长度为s的互动窗口，维护每个窗口的最大值</p>
+<h2 id="分组背包"><a href="#分组背包" class="headerlink" title="分组背包"></a>分组背包</h2><p>核心特点：有若干组，每组里面最多选一个物品（<del>假如说有个瓜摊，选了生瓜蛋子就不能选熟瓜了</del>）</p>
+<p>状态转移：</p>
+<p>若选这一组的东西   $f_{i,j}=f_{i-1,j-v[i][k]}+w[i][k]$ </p>
+<p>若不选的话：          $f_{i,j}=f_{i-1,j}$ </p>
+<p>求两个集合的最大值：取Max</p>
+<script type="math/tex; mode=display">
+f_{i,j}=max(f_{i-1,j},f_{i-1,j-v[i][k]}+w[i][k])</script><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1010</span>;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> v[N][N],s[N],w[N][N],f[N][N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        cin&gt;&gt;s[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=s[i];j++) cin&gt;&gt;v[i][j]&gt;&gt;w[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=m;j++)&#123;</span><br><span class="line">            f[i][j]=f[i<span class="number">-1</span>][j];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=s[i];k++) </span><br><span class="line">                <span class="keyword">if</span>(j&gt;=v[i][k]) f[i][j]=<span class="built_in">max</span>(f[i][j],f[i<span class="number">-1</span>][j-v[i][k]]+w[i][k]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;f[n][m];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

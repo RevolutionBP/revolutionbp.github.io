@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>莫比乌斯反演 - Light up the sky</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="莫比乌斯反演例题原理：
+
+f(x)=\sum_{d\mid x} g(d) \iff g(x)=\sum_{d\mid x} \mu(d)f(\dfrac x d)
+f(x)=\sum_{x\mid,"> 
+    <meta name="author" content="RevolutionBP"> 
+    <link rel="alternative" href="atom.xml" title="Light up the sky" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="莫比乌斯反演 - Light up the sky"/>
+    <meta name="twitter:description" content="莫比乌斯反演例题原理：
+
+f(x)=\sum_{d\mid x} g(d) \iff g(x)=\sum_{d\mid x} \mu(d)f(\dfrac x d)
+f(x)=\sum_{x\mid,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Light up the sky"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="莫比乌斯反演 - Light up the sky"/>
+    <meta property="og:description" content="莫比乌斯反演例题原理：
+
+f(x)=\sum_{d\mid x} g(d) \iff g(x)=\sum_{d\mid x} \mu(d)f(\dfrac x d)
+f(x)=\sum_{x\mid,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Light up the sky</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">莫比乌斯反演</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">莫比乌斯反演</h1>
+        <div class="stuff">
+            <span>十二月 01, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag">数论</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="莫比乌斯反演例题"><a href="#莫比乌斯反演例题" class="headerlink" title="莫比乌斯反演例题"></a>莫比乌斯反演例题</h2><p>原理：</p>
+<script type="math/tex; mode=display">
+f(x)=\sum_{d\mid x} g(d) \iff g(x)=\sum_{d\mid x} \mu(d)f(\dfrac x d)</script><script type="math/tex; mode=display">
+f(x)=\sum_{x\mid d} g(d) \iff \sum_{x\mid d}\mu(\dfrac d x) f(d)</script><p>技巧：</p>
+<script type="math/tex; mode=display">
+[\gcd (x,y)=1]=\sum_{d\mid \gcd(x,y)} \mu(d)</script><script type="math/tex; mode=display">
+\sum _{d\mid n} \mu(d) = [n=1]</script><script type="math/tex; mode=display">
+d(i\times j) =\sum_{x\mid i} \sum _{y\mid j}[\gcd(x,y)==1]</script><p>对于这种与 $\gcd$ 相关的莫比乌斯反演，一般我们都是套路的去设 $f(d)$ 为 $\gcd (i,j)=d$ 的个数，$g(n)$ 为 $\gcd (i,j)=n$ 和 $n$ 的倍数的数的个数</p>
+<p>即：</p>
+<script type="math/tex; mode=display">
+f(d)=\sum_{i=1}^n \sum_{j=1}^m [\gcd(i,j)=d]</script><script type="math/tex; mode=display">
+g(x)=\sum_{i=1}^n \sum_{j=1}^m [x\mid\gcd(i,j)]</script><p>由定义我们容易发现：$f(x)$ 和 $g(x)$ 是有某些关联的，那么我们尝试去发现 $f(x)$ 和 $g(x)$ 的关系，可以发现：</p>
+<script type="math/tex; mode=display">
+g(x)=\sum_{x\mid d} f(d)=\lfloor \dfrac n x \rfloor \lfloor \dfrac m x \rfloor</script><p>那么此时我们显然就可以运用反演了：</p>
+<script type="math/tex; mode=display">
+g(x)=\sum_{x\mid d} f(d)=\lfloor \dfrac n x \rfloor \lfloor \dfrac m x \rfloor\iff f(x)=\sum_{d\mid x} \mu(d)g(\dfrac x d)</script><hr>
+<h4 id="典型例题"><a href="#典型例题" class="headerlink" title="典型例题"></a>典型例题</h4><h5 id="P3455-POI2007-ZAP-Queries"><a href="#P3455-POI2007-ZAP-Queries" class="headerlink" title="P3455 [POI2007]ZAP-Queries"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3455">P3455 [POI2007]ZAP-Queries</a></h5><p>题目描述：</p>
+<p>求解：</p>
+<script type="math/tex; mode=display">
+\sum _{i=1}^a \sum _{j=1 }^b [\gcd (i,j)==k]</script><hr>
+<p>那么我们设 </p>
+<script type="math/tex; mode=display">
+f(k)=\sum_{i=1}^a \sum_{j=1}^b [\gcd(i,j)=k]</script><script type="math/tex; mode=display">
+F(n)=\sum_{n\mid k} f(k)=\lfloor \dfrac a n  \rfloor \lfloor \dfrac b n \rfloor</script><p>由反演可知：</p>
+<script type="math/tex; mode=display">
+f(n)=\sum_{n\mid k} \mu(\lfloor \dfrac k n \rfloor)F(k)</script><p>我们要求的答案应该是 $f(k)$</p>
+<p>那么我们有：</p>
+<script type="math/tex; mode=display">
+f(k)=\sum _{k\mid d} \mu(\lfloor \dfrac d k \rfloor)F(d)</script><p>把 $F(d)$ 化简可得：</p>
+<script type="math/tex; mode=display">
+f(k)=\sum _{k\mid d} \mu(\lfloor \dfrac d k \rfloor)\lfloor \dfrac a d  \rfloor \lfloor \dfrac b d \rfloor</script><p>设 $\lfloor \dfrac d k\rfloor$ 为 $t$</p>
+<p>则 $d=kt$ ，所以：</p>
+<script type="math/tex; mode=display">
+f(k)=\sum _{t=1} ^{\min(a,b)} \mu (t)\lfloor \dfrac a {kt}  \rfloor \lfloor \dfrac b {kt} \rfloor</script><p>我们根据这个就可以利用整数分块来求了</p>
+<hr>
+<h5 id="P2257-YY的GCD"><a href="#P2257-YY的GCD" class="headerlink" title="P2257 YY的GCD"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P2257">P2257 YY的GCD</a></h5><p>题目描述：</p>
+<script type="math/tex; mode=display">
+\sum _{i=1} ^n \sum_{j=1}^m [\gcd (i,j)==k]~~{k\in prime}</script><hr>
+<p>首先我们还是先化简原式：</p>
+<p>设：</p>
+<script type="math/tex; mode=display">
+f(x)=\sum _{i=1} ^n \sum_{j=1}^m [\gcd (i,j)==x]\\
+F(x)=\sum _{x\mid d} f(d)=\lfloor \dfrac n x \rfloor \lfloor \dfrac m x \rfloor\\
+f(x)=\sum_{x\mid d} \mu(\lfloor\dfrac d x \rfloor) F(d)</script><p>然后我们把题目写成一般形式就是：</p>
+<script type="math/tex; mode=display">
+\sum_{p\in prime}\sum _{i=1}^n \sum _{j=1}^m[\gcd(i,j)==p]</script><p>我们要求的答案就是：</p>
+<script type="math/tex; mode=display">
+\sum_{p\in prime}f(p)</script><p>我们利用莫比乌斯反演，即上面的第三个式子就有：</p>
+<script type="math/tex; mode=display">
+\sum_{p\in prime} f(p) =\sum_{p\in prime} \sum_{p\mid d} \mu(\lfloor\dfrac d p \rfloor) F(d)</script><p>我们设 $\lfloor \dfrac d p\rfloor  = t$ 则 $d=pt$ </p>
+<script type="math/tex; mode=display">
+\sum_{p\in prime} f(p) =\sum_{p\in prime} \sum_{t=1}^{\min(\lfloor \frac n {p} \rfloor,\lfloor \frac m {p} \rfloor)} \mu(t) F(pt) =\sum_{p\in prime} \sum_{t=1}^{\min(\lfloor \frac n {p} \rfloor,\lfloor \frac m {p} \rfloor)} \mu(t) \lfloor \dfrac n {pt} \rfloor \lfloor \dfrac m {pt} \rfloor</script><p>现在我们是枚举每一个 $p$ 的倍数进行处理，因此我们也可以改成枚举每一个数的质因数</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{\min (n,m)} \sum _{t\in prime ~\cap~ t\mid i} \mu(\dfrac i t)\lfloor \dfrac{m}{i} \rfloor \lfloor \dfrac{n}{i}\rfloor</script><p>把 $\lfloor \dfrac m i \rfloor \lfloor \dfrac n i\rfloor $ 扔出来就有：</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{\min (n,m)} \lfloor \dfrac{m}{i} \rfloor \lfloor \dfrac{n}{i}\rfloor\sum _{t\in prime ~\cap~ t\mid i} \mu(\dfrac i t)</script><p>我们观察发现：后面的 $\sum \mu (\dfrac i t)$ 可以直接处理掉</p>
+<p>当然，在我们也可以根据一些代数意义化简，当我们化简到这一步的时候：</p>
+<script type="math/tex; mode=display">
+\sum_{p\in prime} \sum_{p\mid d} \mu(\lfloor\dfrac d p \rfloor) F(d)</script><p>翻译成人话就是：对于每一个质数，我枚举它的倍数，使得 $ans$ 加上 $\mu(\lfloor\dfrac d p \rfloor) F(d)$</p>
+<p>那么我们完全可以换一种思路，枚举每一个数，加上它分解质因数后的每一个因数即可，此时对于我的 $\mu$ 来说，就是 $i$ 是 $p$ 的多少倍，$F$ 就是当前的 $i$ 是几</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{\min(n,m)} \sum _{p\in prime \cap p\mid i} \mu(\lfloor \dfrac i p \rfloor)F(i)</script><p>然后拆开 $F(i)$ 就行了</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{\min (n,m)} \sum _{p\in prime ~\cap~ p\mid i} \mu(\lfloor \dfrac i p \rfloor)\lfloor \dfrac{m}{i} \rfloor \lfloor \dfrac{n}{i}\rfloor
+\\ \sum_{i=1}^{\min (n,m)} \lfloor \dfrac{m}{i} \rfloor \lfloor \dfrac{n}{i}\rfloor\sum _{p\in prime ~\cap~ p\mid i} \mu(\lfloor \dfrac i p \rfloor)</script><p>其实和上面的化简是长的一样的，只是换一种理解方式，可以减少很多不必要的步骤。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">BlackPink is the Revolution</span></span><br><span class="line"><span class="comment">light up the sky</span></span><br><span class="line"><span class="comment">Blackpink in your area</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e7</span>+<span class="number">5e5</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="number">3.141592653589793</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; P;</span><br><span class="line"><span class="keyword">namespace</span> scan&#123;</span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">        x=<span class="number">0</span>; <span class="keyword">char</span> c=<span class="built_in">getchar</span>(); <span class="keyword">int</span> f=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(; !<span class="built_in">isdigit</span>(c); c=<span class="built_in">getchar</span>()) f |= c==<span class="string">&#x27;-&#x27;</span>;</span><br><span class="line">        <span class="keyword">for</span>(; <span class="built_in">isdigit</span>(c); c=<span class="built_in">getchar</span>()) x = x*<span class="number">10</span>+(c^<span class="number">48</span>);</span><br><span class="line">        <span class="keyword">if</span>(f) x = -x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(T &amp;x,<span class="keyword">char</span> ch)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span>) <span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>), x = -x;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">short</span> st[<span class="number">30</span>],tp;</span><br><span class="line">        <span class="keyword">do</span> st[++tp] = x%<span class="number">10</span>, x/=<span class="number">10</span>; <span class="keyword">while</span>(x);</span><br><span class="line">        <span class="keyword">while</span>(tp) <span class="built_in">putchar</span>(st[tp--] | <span class="number">48</span>);</span><br><span class="line">        <span class="built_in">putchar</span>(ch);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> scan;</span><br><span class="line"><span class="keyword">int</span> n,m,cnt;</span><br><span class="line"><span class="keyword">int</span> prime[N],mu[N],g[N];</span><br><span class="line"><span class="keyword">int</span> sum[N];</span><br><span class="line"><span class="keyword">bool</span> st[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">get_prime</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	mu[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!st[i]) prime[++cnt]=i,mu[i]=<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;prime[j]*i&lt;n;j++)&#123;</span><br><span class="line">			st[i*prime[j]]=<span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">if</span>(i%prime[j]==<span class="number">0</span>) <span class="keyword">break</span> ;</span><br><span class="line">			mu[i*prime[j]]=-mu[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=cnt;j++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i*prime[j]&lt;=n;i++) g[i*prime[j]]+=mu[i];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) sum[i]=sum[i<span class="number">-1</span>]+g[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> T,ans;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">get_prime</span>(N<span class="number">-100</span>);</span><br><span class="line">	<span class="comment">// for(int i=1;i&lt;=cnt;i++) cout&lt;&lt;prime[i]&lt;&lt;&quot; &quot;;</span></span><br><span class="line">	<span class="built_in">read</span>(T);</span><br><span class="line">	<span class="keyword">while</span>(T--)&#123;</span><br><span class="line">		ans=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">read</span>(n),<span class="built_in">read</span>(m);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">1</span>,r;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">			<span class="keyword">if</span>(n/l==<span class="number">0</span> || m/l==<span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">			r=<span class="built_in">min</span>(n/(n/l),(m/(m/l)));</span><br><span class="line">			ans+=(sum[r]-sum[l<span class="number">-1</span>])*(m/l)*(n/l);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">write</span>(ans,<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="P3327-SDOI2015-约数个数和"><a href="#P3327-SDOI2015-约数个数和" class="headerlink" title="P3327 [SDOI2015]约数个数和"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3327">P3327 [SDOI2015]约数个数和</a></h5><p>题目描述：</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^n \sum _{j=1} ^m d(i\times j)</script><hr>
+<p>首先有一个引理：</p>
+<script type="math/tex; mode=display">
+d(i\times j) =\sum _{a \mid i} \sum _{b\mid j} [\gcd(a,b)==1]</script><p>找了半天也没找到证明，貌似只有一个，还是我没看懂的</p>
+<hr>
+<p>所以我们就直接搞吧</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\sum_{i=1}^n \sum _{j=1} ^m d(i\times j)&=\sum_{i=1}^n \sum _{j=1}^m\sum _{a \mid i} \sum _{b\mid j} [\gcd(a,b)==1]\\
+&=\sum _{a=1} \sum_{b=1} \lfloor \dfrac n a \rfloor \lfloor \dfrac m b \rfloor [\gcd(a,b)==1]
+\end{align*}</script><p>于是我们直接设</p>
+<script type="math/tex; mode=display">
+f(x)=\sum _{i=1} \sum_{j=1} \lfloor \dfrac n i \rfloor \lfloor \dfrac m j \rfloor [\gcd(i,j)==1]\\
+F(x)=\sum_{x\mid d}f(d)</script><p>反演一下：</p>
+<script type="math/tex; mode=display">
+f(x)=\sum_{x\mid d} \mu(\lfloor\dfrac d x \rfloor) F(d)</script><p>于是有：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+F(x)&=\sum _{i=1}^n \sum_{j=1}^m \lfloor \dfrac n i \rfloor \lfloor \dfrac m j \rfloor [ x|\gcd(i,j)]\\
+&=\sum_{i=1}^{\frac n x} \sum_{j=1}^{\frac m x}\lfloor \dfrac n {xi}\rfloor \lfloor \dfrac {m}{xj}\rfloor
+\end{align*}</script><p>我们的答案是 $f(1)$</p>
+<p>所以</p>
+<script type="math/tex; mode=display">
+f(1)=\sum _{d=1}^n \mu (d)F(d)\\
+f(1)=\sum _{d=1}^n \mu (d)\sum_{i=1}^{\frac n d} \sum_{j=1}^{\frac m d}\lfloor \dfrac n {di}\rfloor \lfloor \dfrac {m}{dj}\rfloor</script><p>我们发现前面的 $\mu$ 可以前缀和预处理掉显然好处理，后面的我们可以考虑想想办法</p>
+<p>我们尝试先把后面的 $d$ 扔出去</p>
+<script type="math/tex; mode=display">
+f(1)=\sum _{d=1}^n \mu (d)\sum_{i=1}^{\frac n d} \sum_{j=1}^{\frac m d}\lfloor \dfrac n {di}\rfloor \lfloor \dfrac {m}{dj}\rfloor</script><p>我们这时候发现 $\lfloor \dfrac n {di} \rfloor$ 与 $j$ 无关，可以放到前面：</p>
+<script type="math/tex; mode=display">
+f(1)=\sum _{d=1}^n \mu (d)\sum_{i=1}^{\frac n d} \lfloor \dfrac n {di}\rfloor \sum_{j=1}^{\frac m d} \lfloor \dfrac {m}{dj}\rfloor</script><p>我们发现后面的两个 $\Sigma$ 互不影响 </p>
+<p>这样，我们就可以分别处理了，时间复杂度 $O(T\sqrt n +n\sqrt n)$</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">BlackPink is the Revolution</span></span><br><span class="line"><span class="comment">light up the sky</span></span><br><span class="line"><span class="comment">Blackpink in your area</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> ll=<span class="keyword">long</span> <span class="keyword">long</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">5e4</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">1e9</span>+<span class="number">7</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="number">3.141592653589793</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; P;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> scan&#123;</span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">        x=<span class="number">0</span>; <span class="keyword">char</span> c=<span class="built_in">getchar</span>(); <span class="keyword">int</span> f=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(; !<span class="built_in">isdigit</span>(c); c=<span class="built_in">getchar</span>()) f |= c==<span class="string">&#x27;-&#x27;</span>;</span><br><span class="line">        <span class="keyword">for</span>(; <span class="built_in">isdigit</span>(c); c=<span class="built_in">getchar</span>()) x = x*<span class="number">10</span>+(c^<span class="number">48</span>);</span><br><span class="line">        <span class="keyword">if</span>(f) x = -x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(T x,<span class="keyword">char</span> ch)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span>) <span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>), x = -x;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">short</span> st[<span class="number">30</span>],tp;</span><br><span class="line">        <span class="keyword">do</span> st[++tp] = x%<span class="number">10</span>, x/=<span class="number">10</span>; <span class="keyword">while</span>(x);</span><br><span class="line">        <span class="keyword">while</span>(tp) <span class="built_in">putchar</span>(st[tp--] | <span class="number">48</span>);</span><br><span class="line">        <span class="built_in">putchar</span>(ch);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> scan;</span><br><span class="line"><span class="keyword">int</span> n,m,T;</span><br><span class="line"><span class="keyword">int</span> mu[N];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> sum[N],h[N];</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">get_mu</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	mu[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=i+i;j&lt;=n;j+=i) mu[j]-=mu[i];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) sum[i]=sum[i<span class="number">-1</span>]+mu[i];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> d=<span class="number">1</span>;d&lt;=n;d++)&#123;</span><br><span class="line">		ll res=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">1</span>,r;l&lt;=d;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">			r=d/(d/l);</span><br><span class="line">			res+=<span class="number">1ll</span>*(r-l+<span class="number">1</span>)*<span class="number">1ll</span>*(d/l);</span><br><span class="line">		&#125;</span><br><span class="line">		h[d]=res;</span><br><span class="line">	&#125;<span class="comment">//n sqrt n</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">get_mu</span>(N<span class="number">-5</span>);</span><br><span class="line">    <span class="comment">// for(int i=1;i&lt;=100;i++) cout&lt;&lt;h[i]&lt;&lt;&quot; &quot;;</span></span><br><span class="line">    <span class="comment">// cout&lt;&lt;endl;</span></span><br><span class="line">	<span class="built_in">read</span>(T);</span><br><span class="line">	<span class="keyword">while</span>(T--)&#123;</span><br><span class="line">    	<span class="built_in">read</span>(n),<span class="built_in">read</span>(m);</span><br><span class="line">    	<span class="keyword">if</span>(n&gt;m) <span class="built_in">swap</span>(n,m);</span><br><span class="line">    	ll ans=<span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">1</span>,r;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">    		r=<span class="built_in">min</span>(n/(n/l),m/(m/l));</span><br><span class="line">    		<span class="comment">// cout&lt;&lt;l&lt;&lt;&quot; &quot;&lt;&lt;r&lt;&lt;&quot; &quot;;</span></span><br><span class="line">    		ans+=<span class="number">1ll</span>*(sum[r]-sum[l<span class="number">-1</span>])*<span class="number">1ll</span>*h[n/l]*h[m/l];</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="built_in">write</span>(ans,<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="P1829-国家集训队-Crash的数字表格-JZPTAB"><a href="#P1829-国家集训队-Crash的数字表格-JZPTAB" class="headerlink" title="P1829 [国家集训队]Crash的数字表格 / JZPTAB"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1829">P1829 [国家集训队]Crash的数字表格 / JZPTAB</a></h5><p>题目描述：</p>
+<script type="math/tex; mode=display">
+\sum _{i=1}^n \sum _{j=1} ^m \mathrm{lcm}(i,j)</script><p>数据范围：$1\le n,m\le 10^7$</p>
+<hr>
+<p>首先我们根据<del>小学知识</del>可以发现</p>
+<p>$\gcd(i,j)*\mathrm{lcm}(i,j)=i\times j$</p>
+<p>所以我们的题意就变成了</p>
+<script type="math/tex; mode=display">
+\sum _{i=1}^n \sum _{j=1} ^m \dfrac {ij}{\gcd(i,j)}</script><p>那么就好做多了，我们可以直接枚举 $\gcd $ 并把它放到最前面</p>
+<script type="math/tex; mode=display">
+\sum_{d=1}^{\min(n,m)}\sum_{i=1}^ n \sum_{j=1}^m [gcd (i,j)==d]\dfrac {ij} {d}\\</script><p>我们枚举 $d$ 的倍数可以发现：</p>
+<script type="math/tex; mode=display">
+\sum_{d=1}^{\min(n,m)}\sum_{i=1}^{\frac n d}\sum_{j=1}^{\frac m d} i j d [\gcd(i,j)=1]\\
+\sum_{d=1}^{\min(n,m)}d\sum_{i=1}^{\frac n d}\sum_{j=1}^{\frac m d} i j[\gcd(i,j)=1]\\
+\sum_{d=1}^{\min(n,m)}d\sum_{i=1}^{\frac n d}i\sum_{j=1}^{\frac m d} j\sum_{k\mid \gcd(i,j)} \mu(k)\\</script><p>我们把 $\mu (k)$  的枚举项拿出来，那么式子就变成了（为了方便，就不写 $\min$ 了）</p>
+<script type="math/tex; mode=display">
+\sum_{d=1} ^n d\sum_{k=1}^n\mu(k) \sum_{k\mid i}^{\frac n d} i\sum_{k\mid j}^{\frac m d}j\\</script><p>我们这个式子的最后一个 $\sum$ 的意思是，从 $1\sim \dfrac n d$ 中选取 $k$ 的倍数相加，那么我们可以直接写成：</p>
+<script type="math/tex; mode=display">
+\sum_{d=1} ^n d\sum_{k=1}^n\mu(k) \sum_{i=1}^{\frac n {dk}} ik\sum_{j=1}^{\frac m {dk}}jk\\
+\sum_{d=1} ^n d\sum_{k=1}^n k^2 \mu(k) \sum_{i=1}^{\frac n {dk}} i\sum_{j=1}^{\frac m {dk}}j\\</script><p> 最后两个 $\sum$ 很明显示两个等差数列，我们<del>兴奋地</del>写成等差数列形式</p>
+<script type="math/tex; mode=display">
+\sum_{d=1} ^n d\sum_{k=1}^nk^2\mu(k)\dfrac {\lfloor \frac n {dk} \rfloor(\lfloor \frac n {dk} \rfloor+1)} {2}\dfrac {\lfloor \frac m {dk} \rfloor(\lfloor \frac m {dk} \rfloor+1)} 2</script><p>然后我们先枚举后面巨大的等差数列求和就有：</p>
+<script type="math/tex; mode=display">
+\sum_{d=1} ^n\sum_{k=1}^ndk^2\mu(k)\dfrac {\lfloor \frac n {dk} \rfloor(\lfloor \frac n {dk} \rfloor+1)} {2}\dfrac {\lfloor \frac m {dk} \rfloor(\lfloor \frac m {dk} \rfloor+1)} 2</script><p>那么后面就可以分别预处理加整除分块来做了！</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">BlackPink is the Revolution</span></span><br><span class="line"><span class="comment">light up the sky</span></span><br><span class="line"><span class="comment">Blackpink in your area</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">using</span> ll=<span class="keyword">long</span> <span class="keyword">long</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e7</span>+<span class="number">5</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> mod=<span class="number">20101009</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="number">3.141592653589793</span>;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; P;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> scan&#123;</span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">        x=<span class="number">0</span>; <span class="keyword">char</span> c=<span class="built_in">getchar</span>(); <span class="keyword">int</span> f=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(; !<span class="built_in">isdigit</span>(c); c=<span class="built_in">getchar</span>()) f |= c==<span class="string">&#x27;-&#x27;</span>;</span><br><span class="line">        <span class="keyword">for</span>(; <span class="built_in">isdigit</span>(c); c=<span class="built_in">getchar</span>()) x = x*<span class="number">10</span>+(c^<span class="number">48</span>);</span><br><span class="line">        <span class="keyword">if</span>(f) x = -x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(T x,<span class="keyword">char</span> ch)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;<span class="number">0</span>) <span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>), x = -x;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">short</span> st[<span class="number">30</span>],tp;</span><br><span class="line">        <span class="keyword">do</span> st[++tp] = x%<span class="number">10</span>, x/=<span class="number">10</span>; <span class="keyword">while</span>(x);</span><br><span class="line">        <span class="keyword">while</span>(tp) <span class="built_in">putchar</span>(st[tp--] | <span class="number">48</span>);</span><br><span class="line">        <span class="built_in">putchar</span>(ch);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> scan;</span><br><span class="line"><span class="keyword">int</span> mu[N],prime[N],cnt;</span><br><span class="line">ll sum[N],h[N];</span><br><span class="line"><span class="keyword">bool</span> st[N];</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">qm</span><span class="params">(T a)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (a%mod+mod)%mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (a+b)%mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">get_prime</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">	mu[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(!st[i]) prime[++cnt]=i,mu[i]=<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;prime[j]*i&lt;n;j++)&#123;</span><br><span class="line">			st[i*prime[j]]=<span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">if</span>(i%prime[j]==<span class="number">0</span>) <span class="keyword">break</span> ;</span><br><span class="line">			mu[i*prime[j]]=-mu[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) mu[i]=<span class="built_in">qm</span>(<span class="number">1ll</span>*mu[i]*i*i);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++) sum[i]=<span class="built_in">add</span>(sum[i<span class="number">-1</span>],mu[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">get_sum</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">qm</span>(<span class="number">1ll</span>*<span class="built_in">qm</span>(<span class="number">1ll</span>*x*(x+<span class="number">1</span>)/<span class="number">2</span>)*<span class="built_in">qm</span>(<span class="number">1ll</span>*y*(y+<span class="number">1</span>)/<span class="number">2</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">g</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x&gt;y) <span class="built_in">swap</span>(x,y);</span><br><span class="line">	ll res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">1</span>,r;l&lt;=x;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">		r=<span class="built_in">min</span>(x/(x/l),y/(y/l));</span><br><span class="line">		res=<span class="built_in">add</span>(res, <span class="built_in">qm</span>(<span class="number">1ll</span>*(sum[r]-sum[l<span class="number">-1</span>])*(<span class="built_in">get_sum</span>(x/l,y/l))));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res%mod;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line">ll res=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">get_prime</span>(N);</span><br><span class="line">    <span class="built_in">read</span>(n),<span class="built_in">read</span>(m);</span><br><span class="line">    <span class="keyword">if</span>(n&gt;m) <span class="built_in">swap</span>(n,m);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> l=<span class="number">1</span>,r;l&lt;=n;l=r+<span class="number">1</span>)&#123;</span><br><span class="line">    	r=<span class="built_in">min</span>(n/(n/l), m/(m/l));</span><br><span class="line">    	res=<span class="built_in">add</span>(res, <span class="built_in">qm</span>(<span class="number">1ll</span>*(r-l+<span class="number">1</span>)*(l+r)/<span class="number">2</span>%mod*<span class="built_in">g</span>(n/l,m/l)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">write</span>(<span class="built_in">qm</span>(res),<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="AT5200-AGC038C-LCMs"><a href="#AT5200-AGC038C-LCMs" class="headerlink" title="AT5200 [AGC038C] LCMs"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/AT5200">AT5200 [AGC038C] LCMs</a></h5><p>题目描述：</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^n \sum_{j=i+1}^m \mathrm{lcm}(A_i,A_j)</script><hr>
+<p>首先，利用容斥原理我们会发现，上面的这个玩意长成这样肯定不想要的</p>
+<p>于是我们把它们放到一个按 $A_1 ~A_2~A_3~A_4~A_5~A_6\dots A_n$ 上</p>
+<p><img src="https://s4.ax1x.com/2021/12/05/oDzu9K.jpg" alt=""></p>
+<p>很容易发现，我们要求的就是右边的那个大三角，</p>
+<p>但是我们发现肯定是左边的更好处理，所以我们可以开始行动了</p>
+<script type="math/tex; mode=display">
+\sum_{i=1}^n \sum_{j=i+1}^m \mathrm{lcm}(A_i,A_j)=\dfrac {\sum_{i=1}^n \sum_{j=1}^m \mathrm{lcm}(i,j)-\sum_{i=1}^n A_i} 2</script><p>那我们就只把那一块拿出来观察：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\sum_{i=1}^n \sum_{j=1}^m \mathrm{lcm}(A_i,A_j)&=\sum_{i=1}^n \sum_{j=1}^m \dfrac {A_iA_j} {\gcd(A_i,A_j)}\\
+&=\sum_{d=1}^{\max{A}}\dfrac 1 d\sum_{i=1}^n\sum_{j=1}^n [\gcd(A_i,A_j)==d]A_iA_j\\
+&=\sum_{d=1}^{\max{A}}\dfrac 1 d\sum_{i=1}^n\sum_{j=1}^n A_iA_j[d\mid A_i][d\mid A_j][\gcd(\dfrac {A_i} {d} ,\dfrac {A_j} {d})==1]\\
+\end{align*}</script><p>然后我们就能进行反演了：</p>
+<script type="math/tex; mode=display">
+\sum_{d=1}^{\max{A}}\dfrac 1 d\sum_{i=1}^n\sum_{j=1}^n A_iA_j[d\mid A_i][d\mid A_j][\gcd(\dfrac {A_i} {d} ,\dfrac {A_j} {d})==1]\\
+\sum_{d=1}^{\max{A}}\dfrac 1 d\sum_{i=1}^n\sum_{j=1}^n A_iA_j[d\mid A_i][d\mid A_j]\sum_{k\mid \gcd(\frac {A_i} {d} ,\frac {A_j} {d})} \mu(k)\\
+\sum_{d=1}^{\max{A}}\sum_{k=1}^{\frac {\max A} d}\dfrac {\mu(k)} d\sum_{i=1}^n\sum_{j=1}^n A_iA_j[dk\mid A_i][dk\mid A_j]\\
+\sum_{d=1}^{\max{A}}\sum_{k=1}^{\frac {\max A} d}\dfrac {\mu(k)} d(\sum_{i=1}^nA_i[dk\mid A_i])^2\\</script><p>后面的应该可以开个桶来处理了</p>
+<p>然后我们直接枚举桶里面的元素即可</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

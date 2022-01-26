@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AC自动机 - Light up the sky</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="AC自动机概念描述：AC自动机：（一种可以自动AC的机器），指的是一个文本串和若干个模式串看看这些模式串是否在文本串上被匹配（不需要管有几次，只要出现过就行）
+核心思想：fail指针fail指针（这,"> 
+    <meta name="author" content="RevolutionBP"> 
+    <link rel="alternative" href="atom.xml" title="Light up the sky" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="AC自动机 - Light up the sky"/>
+    <meta name="twitter:description" content="AC自动机概念描述：AC自动机：（一种可以自动AC的机器），指的是一个文本串和若干个模式串看看这些模式串是否在文本串上被匹配（不需要管有几次，只要出现过就行）
+核心思想：fail指针fail指针（这,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Light up the sky"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="AC自动机 - Light up the sky"/>
+    <meta property="og:description" content="AC自动机概念描述：AC自动机：（一种可以自动AC的机器），指的是一个文本串和若干个模式串看看这些模式串是否在文本串上被匹配（不需要管有几次，只要出现过就行）
+核心思想：fail指针fail指针（这,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Light up the sky</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">AC自动机</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">AC自动机</h1>
+        <div class="stuff">
+            <span>十一月 01, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="AC自动机"><a href="#AC自动机" class="headerlink" title="AC自动机"></a>AC自动机</h1><h2 id="概念描述："><a href="#概念描述：" class="headerlink" title="概念描述："></a>概念描述：</h2><p>AC自动机：<del>（一种可以自动AC的机器）</del>，指的是一个文本串和若干个模式串看看这些模式串是否在文本串上被匹配（不需要管有几次，只要出现过就行）</p>
+<h2 id="核心思想："><a href="#核心思想：" class="headerlink" title="核心思想："></a>核心思想：</h2><h4 id="fail指针"><a href="#fail指针" class="headerlink" title="fail指针"></a>fail指针</h4><p>fail指针（这是早期oier们针对此题的一个指针的定义，没有多么高级，只是说明当你匹配成功或者失败后，你要去向何处）在trie上的一些应用来简化</p>
+<h4 id="trie树"><a href="#trie树" class="headerlink" title="trie树"></a>trie树</h4><p>直接把一个字符串一棵树上，把它们相同的部分连在一起，方便统一处理</p>
+<h3 id="trie树-1"><a href="#trie树-1" class="headerlink" title="trie树"></a>trie树</h3><p>trie树是一种很暴力但是很有用的一种数据结构</p>
+<p>trie树是维护一棵树，它的每个节点都会有一些儿子，当我们插入一个新的字符串时，会从第一位开始找，看看树上是否已经有了这个节点，如果找到了就去它的儿子节点去找它的下一位，如果没有就对于这个新的节点建一个新的节点</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ZPK</span>&#123;</span><span class="comment">//AωR2020 txdy</span></span><br><span class="line">    <span class="keyword">int</span> son[<span class="number">26</span>];</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">0</span>,flag=<span class="number">0</span>;</span><br><span class="line">&#125;trie[N];</span><br><span class="line"><span class="keyword">int</span> tot;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> s[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> u=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;s[i];i++)&#123;</span><br><span class="line">       	<span class="keyword">int</span> v=s[i]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span>(!trie[u].son[v]) trie[u].son[v]=++tot;</span><br><span class="line">        u=trie[u].son[v];</span><br><span class="line">    &#125;</span><br><span class="line">    trie[u].num++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这就是基本思想和代码了，每次读入一个字符串，直接insert即可</p>
+<p>总而言之，言而总之：</p>
+<p>$\Huge 有路找路走，没路自己开路走$</p>
+<p>这是我学习trie树的一点点经验</p>
+<h3 id="get-fail"><a href="#get-fail" class="headerlink" title="get_fail"></a>get_fail</h3><p>先放上来一个图（<a target="_blank" rel="noopener" href="https://www.cnblogs.com/hyfhaha/p/10802604.html">来源</a>）</p>
+<p><img src="https://files.catbox.moe/q6ywlu.png" alt=""></p>
+<p>首先我们要先get一下fail指针的具体含义：</p>
+<p>如果说一个点$i$的$fail$指针指向$j$，那么$root$到$j$一定是$root$到$i$这个字符串的前缀</p>
+<p>那么我们一个字符的fail指针可能指向很多个数</p>
+<p>我们还是拿上面的图举例子</p>
+<p>$i$:4     $j$:7<br>$root$到$i$的字符串是“ABC”<br>$root$到$j$的字符串是“BC”<br>“BC”是“ABC”的一个后缀<br>“C”也是“ABC”的一个后缀<br>所以$i$的$Fail$指针指向$j$，意味着:</p>
+<p>我们的$fail$指针指向的应该还得是这些后缀中$\text{dep}$<strong>最大</strong>的那个</p>
+<p>这个$fail$指针看起来好牛逼啊</p>
+<p>那么我们怎么办get到这个$fail$呢</p>
+<p>我们想到了一些问题，对于字符串ABC和BC来说，其实我们</p>
+<p>完全不需要去进行从后往前的枚举，我们要牢牢记得我们是建了一个trie树的</p>
+<p>我们从上往下进行时，我们首先可以确定一件事情就是我们的$fail$指针指向的那个点的$\text{dep}$一定币当前节点小，所以我们首先可以确定第一层的点的fail都是指向节点$\text{root}$的</p>
+<p>我们考虑中间一个点$i$的$\text{fa}$的$fail$指针指的是$\Large Fail$</p>
+<p>如果$Fail$有和$i$相等的儿子的话那么就让$i$的$fail$值指向那个点，因为我们要维护若干个用父亲的$fail$，所以用$\text{bfs}$可能对于本题更为合适</p>
+<p>然后我们再来看一个图（截自OI-wiki）</p>
+<p><img src="https://files.catbox.moe/1bo2gf.png" alt=""></p>
+<p> 找到 6 的父结点 5，$fail[5]=10$。然而 10 结点没有字母 <code>s</code> 连出的边；继续跳到 10 的 $fail$指针，fail[10]=5。发现 0 结点有字母 <code>s</code> 连出的边，指向 7 结点；所以$fail[6]=7$。</p>
+<h4 id="实现细节与技巧"><a href="#实现细节与技巧" class="headerlink" title="实现细节与技巧"></a>实现细节与技巧</h4><ol>
+<li><p>我们可以直接将每个点连到0号节点，然后我们将0号节点的所有儿子指向$root$一节点</p>
+</li>
+<li><p>如果$trie[u]$的儿子$i$是空的，那么我们可以将那个节点设为$Fail$的<strong>(值和$i$相同)</strong>的儿子。保证存在性，就算是0也可以成功返回到根，因为0的所有儿子都是根。</p>
+</li>
+<li><p>无论$Fail$存不存在和$i$值相同的儿子$j$，我们都可以将$i$的$fail$指向$j$，原因是处理$i$时$j$已经处理好了。</p>
+</li>
+<li><p>实现时不记父亲，我们直接让父亲更新儿子</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getfail</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++) trie[<span class="number">0</span>].son[i]=<span class="number">1</span>;</span><br><span class="line">    q.<span class="built_in">push</span>(<span class="number">1</span>);</span><br><span class="line">    trie[<span class="number">1</span>].fail=<span class="number">0</span>;<span class="comment">//将rt压入队列</span></span><br><span class="line">    <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">       	<span class="keyword">int</span> u=q.<span class="built_in">front</span>(),v=q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> Fail=trie[u].fail;</span><br><span class="line">            <span class="keyword">int</span> v=trie[u].son[i];</span><br><span class="line">            <span class="keyword">if</span>(!v)&#123;</span><br><span class="line">                trie[u].son[i]=trie[Fail].son[i];</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                trie[v].fail=trie[Fail].son[i];</span><br><span class="line">            	q.<span class="built_in">push</span>(v);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="查询："><a href="#查询：" class="headerlink" title="查询："></a>查询：</h3><p>求出了$fail$指针后，如果一个字符串匹配成功，那么他的$fail$肯定也成功，它的$fail$的$fail$也可以成功，经过的点累加flag，标记为-1，然后我们跑的时候就不会被重复计算了。（也可以这么理解，如果你跑过这个点了，它的fail会使它一路跳到根，你会发现其实它们都是不需要的）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">char</span>* s)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> u=<span class="number">1</span>,ans=<span class="number">0</span>,len=<span class="built_in">strlen</span>(s);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> v=s[i]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">		<span class="keyword">int</span> k=trie[u].son[v];		<span class="comment">//跳Fail</span></span><br><span class="line">        </span><br><span class="line">		<span class="keyword">while</span>(k&gt;<span class="number">1</span> &amp;&amp; trie[k].flag!=<span class="number">-1</span>)&#123;<span class="comment">//经过就不统计了</span></span><br><span class="line">			ans+=trie[k].flag,trie[k].flag=<span class="number">-1</span>;	</span><br><span class="line">             <span class="comment">//累加上这个位置的模式串个数，标记该点已经经过</span></span><br><span class="line">			k=trie[k].fail;			<span class="comment">//继续跳Fail</span></span><br><span class="line">		&#125;</span><br><span class="line">        </span><br><span class="line">		u=trie[u].son[v];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完整代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bitset&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">3e6</span>+<span class="number">5</span>;</span><br><span class="line">queue&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;x)</span></span>&#123;</span><br><span class="line">    x=<span class="number">0</span>; <span class="keyword">char</span> c=<span class="built_in">getchar</span>(); <span class="keyword">int</span> f=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(; !<span class="built_in">isdigit</span>(c); c=<span class="built_in">getchar</span>()) f |= c==<span class="string">&#x27;-&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(; <span class="built_in">isdigit</span>(c); c=<span class="built_in">getchar</span>()) x = x*<span class="number">10</span>+(c^<span class="number">48</span>);</span><br><span class="line">    <span class="keyword">if</span>(f) x = -x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(T &amp;x,<span class="keyword">char</span> ch)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;<span class="number">0</span>) <span class="built_in">putchar</span>(<span class="string">&#x27;-&#x27;</span>), x = -x;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">short</span> st[<span class="number">30</span>],tp;</span><br><span class="line">    <span class="keyword">do</span> st[++tp] = x%<span class="number">10</span>, x/=<span class="number">10</span>; <span class="keyword">while</span>(x);</span><br><span class="line">    <span class="keyword">while</span>(tp) <span class="built_in">putchar</span>(st[tp--] | <span class="number">48</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(ch);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ZPK</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> num,fail;</span><br><span class="line">    <span class="keyword">int</span> son[<span class="number">30</span>];</span><br><span class="line">&#125;trie[N];</span><br><span class="line"><span class="keyword">int</span> n,tot;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> s[],<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> u=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> v=s[i]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span>(!trie[u].son[v]) trie[u].son[v]=++tot;</span><br><span class="line">        u=trie[u].son[v];</span><br><span class="line">    &#125;</span><br><span class="line">    trie[u].num++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">getfail</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(trie[<span class="number">0</span>].son[i]) q.<span class="built_in">push</span>(trie[<span class="number">0</span>].son[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        <span class="keyword">int</span> u=q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> v=trie[u].son[i];</span><br><span class="line">            <span class="keyword">int</span> Fail=trie[u].fail;</span><br><span class="line">            <span class="keyword">if</span>(!v) trie[u].son[i]=trie[Fail].son[i];</span><br><span class="line">            <span class="keyword">else</span> trie[v].fail=trie[Fail].son[i],q.<span class="built_in">push</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">char</span> s[],<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> u=<span class="number">0</span>,ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> v=s[i]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">int</span> k=trie[u].son[v];</span><br><span class="line">        <span class="keyword">while</span>(k &amp;&amp; trie[k].num!=<span class="number">-1</span>)&#123;</span><br><span class="line">            ans+=trie[k].num;</span><br><span class="line">            trie[k].num=<span class="number">-1</span>;</span><br><span class="line">            k=trie[k].fail;</span><br><span class="line">        &#125;</span><br><span class="line">        u=trie[u].son[v];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">read</span>(n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s);</span><br><span class="line">        <span class="keyword">int</span> len=<span class="built_in">strlen</span>(s);</span><br><span class="line">        <span class="built_in">insert</span>(s,len);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">getfail</span>();</span><br><span class="line">    <span class="built_in">memset</span>(s,<span class="string">&#x27;\0&#x27;</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(s));</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s);</span><br><span class="line">    <span class="keyword">int</span> len=<span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="built_in">query</span>(s,len);</span><br><span class="line">    <span class="built_in">write</span>(ans,<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="加强版"><a href="#加强版" class="headerlink" title="加强版"></a>加强版</h2><p>刚才我们问的是一个字符串是否在文本串中出现，</p>
+<p>现在我们换一个问法，问你哪个字符串出现次数最多，是多少,并输出该字符串</p>
+<p>然后我们给每个店的num直接改成这个点所对应的id，每次这个id++就行了</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">10</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ZPK</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> son[<span class="number">26</span>];</span><br><span class="line">    <span class="keyword">int</span> num,fail;</span><br><span class="line">&#125;trie[N];</span><br><span class="line"><span class="keyword">int</span> tot;</span><br><span class="line"><span class="keyword">int</span> ed[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> now,<span class="keyword">char</span> c[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> u=<span class="number">0</span>,len=<span class="built_in">strlen</span>(c);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> v=c[i]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span>(!trie[u].son[v]) trie[u].son[v]=++tot;</span><br><span class="line">        u=trie[u].son[v];</span><br><span class="line">    &#125;</span><br><span class="line">    trie[u].num=now;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">getfail</span><span class="params">()</span></span>&#123;</span><br><span class="line">    queue&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++) <span class="keyword">if</span>(trie[<span class="number">0</span>].son[i]) q.<span class="built_in">push</span>(trie[<span class="number">0</span>].son[i]);</span><br><span class="line">    <span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        <span class="keyword">int</span> u=q.<span class="built_in">front</span>();q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> v=trie[u].son[i];</span><br><span class="line">            <span class="keyword">int</span> Fail=trie[u].fail;</span><br><span class="line">            <span class="keyword">if</span>(!v) trie[u].son[i]=trie[Fail].son[i];</span><br><span class="line">            <span class="keyword">else</span> trie[v].fail=trie[Fail].son[i],q.<span class="built_in">push</span>(v);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">query</span><span class="params">(<span class="keyword">char</span> c[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len=<span class="built_in">strlen</span>(c);</span><br><span class="line">    <span class="keyword">int</span> u=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> v=c[i]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">int</span> k=trie[u].son[v];</span><br><span class="line">        <span class="keyword">while</span>(k)&#123;</span><br><span class="line">            <span class="keyword">if</span>(trie[k].num) ed[trie[k].num]++;</span><br><span class="line">            k=trie[k].fail;</span><br><span class="line">        &#125;</span><br><span class="line">        u=trie[u].son[v];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(ed,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(ed));</span><br><span class="line">    <span class="built_in">memset</span>(trie,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(trie));</span><br><span class="line">    tot=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(cin&gt;&gt;n &amp;&amp; n)&#123;</span><br><span class="line">        <span class="keyword">char</span> s[<span class="number">200</span>][<span class="number">100</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s[i]);</span><br><span class="line">            <span class="built_in">insert</span>(i,s[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">getfail</span>();</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,s[n+<span class="number">1</span>]);</span><br><span class="line">        <span class="built_in">query</span>(s[n+<span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=tot;i++) ans=<span class="built_in">max</span>(ans,ed[i]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=tot;i++) <span class="keyword">if</span>(ed[i]==ans) <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>,s[i]);</span><br><span class="line">        <span class="built_in">clear</span>();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="二次加强版"><a href="#二次加强版" class="headerlink" title="二次加强版"></a>二次加强版</h2>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>

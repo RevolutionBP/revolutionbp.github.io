@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>图的存储和遍历模板 - Light up the sky</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="Tarjan割点、割边（桥）对于无向连通图 $G=(V,E)$：
+若对于 $x\in V$，从图中删去 $x$ 以及与其直接相连的点之后，$G$ 不再连通，则称 $x$ 为 $G$ 的割点。
+若对于,"> 
+    <meta name="author" content="RevolutionBP"> 
+    <link rel="alternative" href="atom.xml" title="Light up the sky" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="图的存储和遍历模板 - Light up the sky"/>
+    <meta name="twitter:description" content="Tarjan割点、割边（桥）对于无向连通图 $G=(V,E)$：
+若对于 $x\in V$，从图中删去 $x$ 以及与其直接相连的点之后，$G$ 不再连通，则称 $x$ 为 $G$ 的割点。
+若对于,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="Light up the sky"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="图的存储和遍历模板 - Light up the sky"/>
+    <meta property="og:description" content="Tarjan割点、割边（桥）对于无向连通图 $G=(V,E)$：
+若对于 $x\in V$，从图中删去 $x$ 以及与其直接相连的点之后，$G$ 不再连通，则称 $x$ 为 $G$ 的割点。
+若对于,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Light up the sky</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://example.com"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">图的存储和遍历模板</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">图的存储和遍历模板</h1>
+        <div class="stuff">
+            <span>十月 01, 2021</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%85%A5%E9%97%A8/" rel="tag">入门</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%9B%BE%E8%AE%BA/" rel="tag">图论</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="Tarjan"><a href="#Tarjan" class="headerlink" title="Tarjan"></a>Tarjan</h1><h2 id="割点、割边（桥）"><a href="#割点、割边（桥）" class="headerlink" title="割点、割边（桥）"></a>割点、割边（桥）</h2><p>对于<strong>无向连通图</strong> $G=(V,E)$：</p>
+<p>若对于 $x\in V$，从图中删去 $x$ 以及与其直接相连的点之后，$G$ 不再连通，则称 $x$ 为 $G$ 的<strong>割点</strong>。</p>
+<p>若对于 $e\in E$，从图中删去 $e$ 后，$G$ 不再连通，则称 $e$ 为 $G$ 的<strong>割边</strong>或<strong>桥</strong>。</p>
+<p><strong>一般无向图</strong>（不一定连通）的割点和桥就是它的各个连通块的割点和桥。</p>
+<hr>
+<h2 id="Tarjan-求割边（桥）、割点"><a href="#Tarjan-求割边（桥）、割点" class="headerlink" title="Tarjan 求割边（桥）、割点"></a>Tarjan 求割边（桥）、割点</h2><p>$low[x]$ 定义为搜索树中 $x$ 的子树以及经过一条非树边可以到达搜索树中 $x$ 的子树的节点的 $dfn[y]$ 的最小值。</p>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>具体题中一定要注意图是否连通。</p>
+<h3 id="求割边（桥）"><a href="#求割边（桥）" class="headerlink" title="求割边（桥）"></a>求割边（桥）</h3><ul>
+<li>判定法则</li>
+</ul>
+<p>无向边 $(x,y)$ 是桥，当且仅当搜索树上 $y$ 是 $x$ 的子节点，且满足 $low[y]&gt;dfn[x]$。</p>
+<ul>
+<li>性质以及一个奇怪的操作</li>
+</ul>
+<p><strong>桥一定是搜索树中的边，一个简单环中的边一定都不是桥。割边必然在生成树中。</strong></p>
+<p>如果一个边不属于任何一个回路，那么它是一条割边。</p>
+<p>利用此性质，可以求出任意一个生成树，然后向上加非树边，没有和任意一个非树边构成环的边就是割边，覆盖成环的操作可以使用树上差分，还可以使用树剖。</p>
+<ul>
+<li>Tarjan 求桥</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> in_edge)</span> </span>&#123;</span><br><span class="line">    ctb ++;</span><br><span class="line">    dfn[x] = low[x] = ctb;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = hd[x]; i; i = nxt[i]) &#123;</span><br><span class="line">        <span class="keyword">int</span> y = ver[i];</span><br><span class="line">        <span class="keyword">if</span>(dfn[y] == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">tarjan</span>(y, i);</span><br><span class="line">            low[x] = <span class="built_in">min</span>(low[x], low[y]);</span><br><span class="line">            <span class="keyword">if</span>(low[y] &gt; dfn[x])</span><br><span class="line">                bri[i] = bri[i ^ <span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(i != (in_edge ^ <span class="number">1</span>))</span><br><span class="line">            low[x] = <span class="built_in">min</span>(low[x], dfn[y]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="边-S2OJ391"><a href="#边-S2OJ391" class="headerlink" title="边 (S2OJ391)"></a>边 (S2OJ391)</h4><p>给定一张图，判断其中的每条边在最小生成树中的情况：</p>
+<p>​    1.不在任意一个最小生成树中，输出 <code>none</code>。</p>
+<p>​    2.在部分最小生成树中，输出 <code>at least one</code>。</p>
+<p>​    3.一定出现在最小生成树中，输出 <code>any</code>。</p>
+<p>按照读入的顺序输出每条边的情况。</p>
+<p>$n,m\le10^5$。</p>
+<hr>
+<p>利用加边再断环的想法，用向上标记法，可以水过去（数据太水了，这种方法复杂度不对，会被卡到 $O(n^2)$）。</p>
+<p><code>none</code> 是好判断的，所以我们重点在于如何判断是 <code>any</code> 还是 <code>at least one</code>。</p>
+<p>对于任意一个连通森林，连接两个连通块的权值最小的边一定在最小生成树中。但是如果有连接两个相同连通块的边权值相同，这两个边就会出现问题，从 <code>any</code> 变成了 <code>at least one</code>。</p>
+<p>我们仔细思考上面的情况，可以发现问题出现在这种情况：有若干条权值相同的边，并且它们都可以连接两个不同的连通块。</p>
+<p>那么，把连通块看成点，把这些权值相同的边加入，那么在这个图中的桥，都是 <code>any</code>，否则是 <code>at least one</code>。</p>
+<p>那么我们跑一遍 $\rm Tarjan$，复杂度是 $O(边数)$ 的，所以总复杂度约 $O(m)$。</p>
+<p>当然那时 $\rm Tarjan$ 的总复杂度，整个程序还有排序和并查集，是一个小常数 $O(n\log n)$。</p>
+<p>这种将连通块看作点，以及多次判断是否为桥时的处理方法是很值得借鉴与思考的。</p>
+<p>好题。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100010</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> rk, u, v, w;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Disjoint_Set</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> fa[N];</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">djsinit</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= x; i ++)</span><br><span class="line">			fa[i] = i;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> fa[x] == x ? x : fa[x] = <span class="built_in">Find</span>(fa[x]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Merge</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span> </span>&#123;</span><br><span class="line">		x = <span class="built_in">Find</span>(x);</span><br><span class="line">		y = <span class="built_in">Find</span>(y);</span><br><span class="line">		fa[x] = y;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> ct = <span class="number">1</span>, hd[N], ver[N&lt;&lt;<span class="number">1</span>], nxt[N&lt;&lt;<span class="number">1</span>], rk[N&lt;&lt;<span class="number">1</span>];</span><br><span class="line"><span class="keyword">int</span> ans[N];</span><br><span class="line">Edge e[N];</span><br><span class="line">Disjoint_Set djs;</span><br><span class="line">vector&lt;Edge&gt; tmpe;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; tmpp;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(Edge a, Edge b)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.w &lt; b.w;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> rank)</span> </span>&#123;</span><br><span class="line">	ver[++ct] = v;</span><br><span class="line">	rk[ct] = rank;</span><br><span class="line">	nxt[ct] = hd[u];</span><br><span class="line">	hd[u] = ct;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> Tarjan &#123;</span><br><span class="line">	<span class="keyword">int</span> ct, dfn[N], low[N];</span><br><span class="line">	<span class="keyword">int</span> st;	<span class="comment">// 用于表示开始一轮 Tarjan 时 ct 的值。 </span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> ine)</span> </span>&#123;</span><br><span class="line">		ct ++;</span><br><span class="line">		dfn[x] = low[x] = ct;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = hd[x]; i; i = nxt[i]) &#123;</span><br><span class="line">			<span class="keyword">int</span> y = ver[i];</span><br><span class="line">			<span class="keyword">if</span>(dfn[y] == <span class="number">0</span>) &#123;</span><br><span class="line">				<span class="built_in">tarjan</span>(y, i);</span><br><span class="line">				low[x] = <span class="built_in">min</span>(low[x], low[y]);</span><br><span class="line">				<span class="keyword">if</span>(low[y] &gt; dfn[x])</span><br><span class="line">					ans[rk[i]] = <span class="number">2</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span>(i != (ine ^ <span class="number">1</span>) &amp;&amp; dfn[y] &gt; st)	<span class="comment">// 防止使</span></span><br><span class="line">				low[x] = <span class="built_in">min</span>(low[x], dfn[y]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">mian</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		st = ct;</span><br><span class="line">		<span class="keyword">int</span> siz = tmpp.<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; siz; i ++)</span><br><span class="line">			dfn[tmpp[i]] = low[tmpp[i]] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; siz; i ++)</span><br><span class="line">			<span class="keyword">if</span>(dfn[tmpp[i]] == <span class="number">0</span>)</span><br><span class="line">				<span class="built_in">tarjan</span>(tmpp[i], <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">	e[m+<span class="number">1</span>].w = <span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i ++) &#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;e[i].u, &amp;e[i].v, &amp;e[i].w);</span><br><span class="line">		e[i].rk = i;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="built_in">sort</span>(e+<span class="number">1</span>, e+m+<span class="number">1</span>, cmp);</span><br><span class="line">	djs.<span class="built_in">djsinit</span>(n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m;) &#123;</span><br><span class="line">		<span class="keyword">int</span> tmp = e[i].w;</span><br><span class="line">		<span class="keyword">while</span>(e[i].w == tmp) &#123;</span><br><span class="line">			<span class="keyword">int</span> tx = djs.<span class="built_in">Find</span>(e[i].u);</span><br><span class="line">			<span class="keyword">int</span> ty = djs.<span class="built_in">Find</span>(e[i].v);</span><br><span class="line">			<span class="keyword">if</span>(tx == ty) &#123;</span><br><span class="line">				i ++;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			ans[e[i].rk] = <span class="number">1</span>;</span><br><span class="line">			Edge tmp2;</span><br><span class="line">			tmp2.rk = e[i].rk;</span><br><span class="line">			tmp2.u = tx;</span><br><span class="line">			tmp2.v = ty;</span><br><span class="line">			tmp2.w = e[i].w;</span><br><span class="line">			tmpe.<span class="built_in">push_back</span>(tmp2);</span><br><span class="line">			i ++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> siz = tmpe.<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; siz; j ++) &#123;</span><br><span class="line">			Edge tmp3 = tmpe[j];</span><br><span class="line">			<span class="built_in">add</span>(tmp3.u, tmp3.v, tmp3.rk);</span><br><span class="line">			<span class="built_in">add</span>(tmp3.v, tmp3.u, tmp3.rk);</span><br><span class="line">			djs.<span class="built_in">Merge</span>(tmp3.u, tmp3.v);</span><br><span class="line">			tmpp.<span class="built_in">push_back</span>(tmp3.u);</span><br><span class="line">			tmpp.<span class="built_in">push_back</span>(tmp3.v);</span><br><span class="line">		&#125;</span><br><span class="line">		tmpe.<span class="built_in">clear</span>();</span><br><span class="line">		Tarjan::<span class="built_in">mian</span>();</span><br><span class="line">		tmpp.<span class="built_in">clear</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i ++)</span><br><span class="line">		<span class="keyword">if</span>(ans[i] == <span class="number">0</span>)</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">&quot;none&quot;</span>);</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(ans[i] == <span class="number">1</span>)</span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">&quot;at least one&quot;</span>);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="built_in">puts</span>(<span class="string">&quot;any&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="求割点"><a href="#求割点" class="headerlink" title="求割点"></a>求割点</h3><p>若 $x$ 是搜索树的根节点，则 $x$ 是割点当且仅当搜索树上存在至少两个子节点 $y_1,y_2$ 满足 $low[y_i]\ge dfn[x]$。</p>
+<p>若 $x$ 不是搜索树的根节点，那么 $x$ 是割点当且仅当搜索树上存在一个 $x$ 的子节点 $y$ 满足 $low[y]\ge dfn[x]$。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    ctb ++;</span><br><span class="line">    dfn[x] = low[x] = ctb;</span><br><span class="line">    <span class="keyword">int</span> tmpcnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = hd[x]; i; i = nxt[i]) &#123;</span><br><span class="line">        <span class="keyword">int</span> y = ver[i];</span><br><span class="line">        <span class="keyword">if</span>(dfn[y] == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">tarjan</span>(y);</span><br><span class="line">            low[x] = std::<span class="built_in">min</span>(low[x], low[y]);</span><br><span class="line">            <span class="keyword">if</span>(low[y] &gt;= dfn[x])</span><br><span class="line">                tmpcnt ++;</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            low[x] = std::<span class="built_in">min</span>(low[x], dfn[y]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>((x != rt &amp;&amp; tmpcnt == <span class="number">1</span>) || tmpcnt &gt; <span class="number">1</span>)</span><br><span class="line">        cut[x] = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="强连通分量（SCC）"><a href="#强连通分量（SCC）" class="headerlink" title="强连通分量（SCC）"></a>强连通分量（SCC）</h2><p>定义在<strong>有向图</strong>上。</p>
+<p>一张有向图，满足图中任意两个节点 $x,y$，都存在至少一条 $x$ 到 $y$ 的路径，那么是一张强连通图。</p>
+<p>有向图的极大强连通子图称为“强连通分量”，简记为 SCC。</p>
+<hr>
+<h2 id="Tarjan-求强连通分量"><a href="#Tarjan-求强连通分量" class="headerlink" title="Tarjan 求强连通分量"></a>Tarjan 求强连通分量</h2><h4 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h4><p>具体题中一定要注意图是否连通。</p>
+<p>当然，其实连不连通都得从每个 $dfn[x]=0$ 的点搜一遍，因为有向图的连通比较难搞。</p>
+<hr>
+<p>首先维护一个栈，包含 $x$ 的祖先节点和存在一条路径到达 $x$ 的祖先节点的点，那么如果从 $x$ 出发有一条边连接到了这些点，就可以形成环。</p>
+<ul>
+<li>SCC 简单性质</li>
+</ul>
+<p>任意一个点或边都在至少一个简单环中。</p>
+<ul>
+<li>$low[x]$</li>
+</ul>
+<p>定义为栈中的或者搜索树上 $x$ 的子树内有边连向 $x$ 的点的 $dfn[y]$ 的最小值。</p>
+<p>进行 DFS，把搜索树上的点入栈，如果目标节点在栈中，则用 $dfn[y]$ 更新 $low[x]$，否则可以用 $low[y]$ 更新 $low[x]$。</p>
+<p>不难发现，一个 SCC 中所有节点的 $low[x]$ 都等于 SCC 中最小的 $dfn[x]$，考虑让每个 SCC 是在它第一个被搜到的节点处统计，于是，我们在 $low[x]=dfn[x]$ 的点 $x$ 处统计，具体地，不断出栈，直至 $x$ 也出栈。</p>
+<p>每个节点都包含在至少一个 SCC 中，因为实在不行它可以自己成一个 SCC，毕竟初始化 $low[x]=dfn[x]=cnt$。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    ctb ++;</span><br><span class="line">    dfn[x] = low[x] = ctb;</span><br><span class="line">    stk[++top] = x;</span><br><span class="line">    ins[x] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = hd[x]; i; i = nxt[i]) &#123;</span><br><span class="line">        <span class="keyword">int</span> y = ver[i];</span><br><span class="line">        <span class="keyword">if</span>(dfn[y] == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">tarjan</span>(y);</span><br><span class="line">            low[x] = std::<span class="built_in">min</span>(low[x], low[y]);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(ins[y])</span><br><span class="line">            low[x] = std::<span class="built_in">min</span>(low[x], dfn[y]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(low[x] == dfn[x]) &#123;</span><br><span class="line">        ctc ++;</span><br><span class="line">        <span class="keyword">int</span> y;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            y = stk[top--];</span><br><span class="line">            ins[y] = <span class="literal">false</span>;</span><br><span class="line">            bel[y] = ctc;</span><br><span class="line">            scc[ctc].<span class="built_in">push_back</span>(y);</span><br><span class="line">        &#125; <span class="keyword">while</span>(x != y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="SCC-缩点"><a href="#SCC-缩点" class="headerlink" title="SCC 缩点"></a>SCC 缩点</h3><p>把 SCC 看作一个点，只把不在同一个 SCC 的边连上即可。</p>
+<hr>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="false"
+        data-ae="false"
+        data-ci=""
+        data-cs=""
+        data-r=""
+        data-o=""
+        data-a=""
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+
+</html>
